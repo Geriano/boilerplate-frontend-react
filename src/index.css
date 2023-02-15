@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-primary {
+  @apply transition-all duration-300 bg-primary-0 hover:bg-primary-1 active:bg-primary-2;
+}
+
+.bg-secondary {
+  @apply transition-all duration-300 bg-secondary-0 hover:bg-secondary-1 active:bg-secondary-2;
+}
+
+.bg-success {
+  @apply transition-all duration-300 bg-success-0 hover:bg-success-1 active:bg-success-2;
+}
+
+.bg-danger {
+  @apply transition-all duration-300 bg-danger-0 hover:bg-danger-1 active:bg-danger-2;
+}
+
+.bg-info {
+  @apply transition-all duration-300 bg-info-0 hover:bg-info-1 active:bg-info-2;
+}
+
+.bg-warning {
+  @apply transition-all duration-300 bg-warning-0 hover:bg-warning-1 active:bg-warning-2;
+}
+
+.bg-yellow {
+  @apply transition-all duration-300 bg-yellow-0 hover:bg-yellow-1 active:bg-yellow-2;
+}
+
+.bg-dark {
+  @apply transition-all duration-300 bg-dark-0 hover:bg-dark-1 active:bg-dark-2;
+}
+
+.bg-light {
+  @apply transition-all duration-300 bg-light-0 hover:bg-light-1 active:bg-light-2;
+}

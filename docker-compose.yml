@@ -1,0 +1,17 @@
+name: boilerplate-react
+version: '3.1'
+services:
+  frontend:
+    build: .
+    command: npx vite --host
+    ports:
+      - 5173:5173
+    volumes:
+      - ./public:/app/public
+      - ./src:/app/src
+      - ./.env:/app/.env
+      - ./index.html:/app/index.html
+      - ./package.json:/app/package.json
+      - ./postcss.config.cjs:/app/postcss.config.cjs
+      - ./tailwind.config.cjs:/app/tailwind.config.cjs
+      - ./vite.config.ts:/app/vite.config.ts

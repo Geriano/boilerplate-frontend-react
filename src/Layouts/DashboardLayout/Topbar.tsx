@@ -8,8 +8,8 @@ export default function Topbar() {
   
   return (
     <div className={classNames("sticky top-0 w-full h-14 border-b flex items-center justify-between shadow transition-all duration-300", {
-      'bg-gray-200 text-gray-700': theme !== 'dark',
-      'bg-gray-800 text-gray-100 border-gray-900': theme == 'dark',
+      'bg-white text-gray-700': theme !== 'dark',
+      'bg-gray-800 text-gray-100 border-gray-800': theme == 'dark',
     })}>
       <SidebarToggler />
       <div className="flex items-center justify-end w-full h-full p-2">

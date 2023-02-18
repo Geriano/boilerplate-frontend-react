@@ -2,11 +2,16 @@ import classNames from "classnames"
 import { useAppSelector } from "../hooks"
 import Sidebar from "./DashboardLayout/Sidebar"
 import Topbar from "./DashboardLayout/Topbar"
-import { Outlet } from "react-router-dom"
+import { Navigate, Outlet } from "react-router-dom"
 
 
 export default function DashboardLayout() {
   const theme = useAppSelector(state => state.layout.theme)
+  const authenticated = useAppSelector(state => state.auth.authenticated)
+
+  if (!authenticated) {
+    return <Navigate to={"/login?from=" + window.location.pathname} />
+  }
 
   return (
     <div className={classNames("flex w-full h-full antialiased font-sans text-base transition-all duration-300", {

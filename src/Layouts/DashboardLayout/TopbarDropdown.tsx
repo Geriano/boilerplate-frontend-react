@@ -4,6 +4,7 @@ import Icon from "@mdi/react";
 import { mdiAccount, mdiCog, mdiLogout, mdiMenuDown } from "@mdi/js";
 import { theme, toggle } from "../../store/layout";
 import { Link } from "react-router-dom";
+import { logout } from "../../store/auth";
 
 export default function TopbarDropdown() {
   const { dropdown } = useAppSelector(state => state.layout.open)
@@ -38,7 +39,7 @@ export default function TopbarDropdown() {
           </Link>
         </div>
         <div className={classNames("px-2 transition-all duration-300 hover:bg-gray-50 border-b", { 'border-gray-900 hover:bg-gray-900': active === 'dark' })}>
-          <button type="button" className="flex items-center space-x-2 px-4 py-2" title="Logout">
+          <button onClick={e => dispatch(logout())} type="button" className="flex items-center space-x-2 px-4 py-2" title="Logout">
             <Icon path={mdiLogout} size={.75} />
             <p className="capitalize font-medium">logout</p>
           </button>

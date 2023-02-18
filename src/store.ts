@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit"
 import layout from "./store/layout"
+import auth from "./store/auth"
 
 export const store = configureStore({
   reducer: {
+    auth,
     layout,
   },
   middleware: middleware => middleware({

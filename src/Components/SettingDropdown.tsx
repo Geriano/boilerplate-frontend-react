@@ -2,14 +2,18 @@ import { mdiChevronDown } from "@mdi/js"
 import Icon from "@mdi/react"
 import classNames from "classnames"
 import { PropsWithChildren, useState, MouseEvent, useRef } from "react"
+import { useLocation, useResolvedPath } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
 
 type Props = {
   label: string
+  actives: string[]
 }
 
-export default function SettingDropdown({ children, label }: PropsWithChildren<Props>) {
-  const [open, setOpen] = useState(false)
+export default function SettingDropdown({ actives, children, label }: PropsWithChildren<Props>) {
+  const location = useLocation()
+  const route = useResolvedPath(location.pathname)
+  const [open, setOpen] = useState(actives.includes(route.pathname))
   const ref = useRef(null)
 
   const toggle = (e: MouseEvent) => {

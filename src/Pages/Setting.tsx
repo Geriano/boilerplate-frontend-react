@@ -12,13 +12,13 @@ export default function Setting() {
       <div className="col-span-2">
         <div className="flex flex-col space-y-2">
           {role.has(['superuser', 'dev']) && (
-            <SettingDropdown label="Setup">
+            <SettingDropdown actives={['/setting/general']} label="Setup">
               <SettingMenu to="/setting/general">General</SettingMenu>
             </SettingDropdown>
           )}
 
           {role.has(['superuser', 'dev']) && (
-            <SettingDropdown label="Access & Permission">
+            <SettingDropdown actives={['/setting/permission', '/setting/role', '/setting/user']} label="Access & Permission">
               {permission.has(['create permission', 'read permission', 'update permission', 'delete permission']) && (
                 <SettingMenu to="/setting/permission">Permission</SettingMenu>
               )}

@@ -3,6 +3,7 @@ export interface Response<C extends number,T> {
   data: T
 }
 
+export type ErrorResponse<T> = Response<400|401|402|403|404|405|419|422|500, T>
 export type SuccessResponse<T> = Response<200|201, T>
 export type CreatedResponse<T> = Response<201, T>
 export type BadRequestResponse<T> = Response<400, T>

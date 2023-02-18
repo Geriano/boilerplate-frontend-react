@@ -24,20 +24,20 @@ export const services = {
     params: [],
   },
   'permission.all': {
-    path: '/permission',
+    path: '/superuser/permission',
     params: [],
   },
   'permission.store': {
-    path: '/permission',
+    path: '/superuser/permission',
     params: [],
   },
   'permission.update': {
-    path: '/permission/{id}',
+    path: '/superuser/permission/{id}',
     params: ['id'],
   },
   'permission.destroy': {
-    path: '/permission/{id}',
-    params: [],
+    path: '/superuser/permission/{id}',
+    params: ['id'],
   },
 }
 

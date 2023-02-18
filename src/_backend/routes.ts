@@ -24,7 +24,7 @@ export function route<T extends keyof Services>(route: T, params: Record<string,
   let path = service.path
 
   for (const key of binds.keys()) {
-    path = path.replace(`{${key}}`, binds.get(key) || '')
+    path = path.replaceAll(`{${key}}`, binds.get(key) || '')
   }
 
   path = `/${path}`.replace(/\/+/, '/').replace(/^\//, '')

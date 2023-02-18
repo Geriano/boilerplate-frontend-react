@@ -18,7 +18,7 @@ export default function Permission() {
 
   return (
     <>
-      <div className="h-full bg-gray-50 rounded-md shadow p-4">
+      <div className="h-full bg-white rounded-md shadow p-4">
         <div className="flex items-center justify-between">
           <h3 className="font-medium capitalize">Permission</h3>
 

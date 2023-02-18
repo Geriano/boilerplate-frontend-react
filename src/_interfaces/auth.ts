@@ -1,6 +1,4 @@
-import { Permission } from "./permission"
 import { SuccessResponse, UnprocessableEntityResponse } from "./response"
-import { Role } from "./roles"
 
 export interface User {
   id: string
@@ -9,6 +7,16 @@ export interface User {
   username: string
   permissions: Permission[]
   roles: Role[]
+  can: (names: string|string[]) => boolean
+}
+
+export interface Permission {
+  key: string
+}
+
+export interface Role {
+  key: string
+  permissions: Permission[]
 }
 
 export interface State {

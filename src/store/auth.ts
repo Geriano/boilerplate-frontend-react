@@ -14,6 +14,7 @@ export const initialState: State = {
     email: '',
     permissions: [],
     roles: [],
+    can: (names: string|string[]) => false,
   },
   token: localStorage.getItem('token') || '',
   processing: false,
@@ -121,6 +122,28 @@ export const slice = createSlice({
       state.user = payload.user
       state.token = payload.token
       state.authenticated = true
+
+      state.user.can = (names: string|string[]) => {
+        if (Array.isArray(names)) {
+          for (const name of names) {
+            if (payload.user.can(name)) {
+              return true
+            }
+          }
+
+          return false
+        }
+
+        if (payload.user.permissions.find(permission => permission.key === names)) {
+          return true
+        }
+
+        if (payload.user.roles.find(role => role.permissions.find(permission => permission.key === names))) {
+          return true
+        }
+
+        return false
+      }
 
       localStorage.setItem('token', state.token)
       axios.defaults.headers.common.Authorization = `Bearer ${state.token}`

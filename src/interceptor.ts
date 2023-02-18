@@ -15,3 +15,12 @@ axios.interceptors.request.use(async config => {
   
   return config
 })
+
+axios.interceptors.response.use(async config => {
+  if (window.location.pathname.toLowerCase() !== '/login' && config.status === 401) {
+    localStorage.removeItem('token')
+    window.location.reload()
+  }
+
+  return config
+})

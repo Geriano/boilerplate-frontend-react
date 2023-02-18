@@ -9,7 +9,7 @@ export default function Button(props: PropsWithChildren<Props> & ButtonHTMLAttri
   return (
     <button
       {...props}
-      className={classNames("text-white focus:ring-1 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none transition-all", {
+      className={classNames("focus:ring-1 font-medium rounded-lg text-sm px-3 py-1 shadow focus:outline-none transition-all", {
         'bg-primary-0 hover:bg-primary-1 focus:ring-primary-2': props.color === 'primary',
         'bg-secondary-0 hover:bg-secondary-1 focus:ring-secondary-2': props.color === 'secondary',
         'bg-success-0 hover:bg-success-1 focus:ring-success-2': props.color === 'success',

@@ -7,7 +7,6 @@ export interface User {
   username: string
   permissions: Permission[]
   roles: Role[]
-  can: (names: string|string[]) => boolean
 }
 
 export interface Permission {

@@ -40,7 +40,7 @@ export default function Form() {
     <CSSTransition nodeRef={ref} in={open} timeout={500} className="opacity">
       <div ref={ref}>
         <Modal show={open} className="text-base" size="md" onClose={() => dispatch(toggle(false))}>
-          <form action={route(form.id ? 'permission.update' : 'permission.store')} onSubmit={submit}>
+          <form action={route(form.id ? 'permission.update' : 'permission.store', { id: form.id })} onSubmit={submit}>
             <Modal.Header className="py-1" />
 
             <Modal.Body>

@@ -58,6 +58,30 @@ export const paginate = createAsyncThunk('role/paginate', async (_, api) => {
   ))
 })
 
+export const previous = createAsyncThunk('role/previous', async (_, api) => {
+  const state = api.getState() as RootState
+  const { paginated } = state.role
+
+  if (paginated.meta.current_page - 1 < 1) {
+    return
+  }
+
+  api.dispatch(slice.actions.previous())
+  await api.dispatch(paginate())
+})
+
+export const next = createAsyncThunk('role/next', async (_, api) => {
+  const state = api.getState() as RootState
+  const { paginated } = state.role
+
+  if (paginated.meta.current_page + 1 > paginated.meta.last_page) {
+    return
+  }
+
+  api.dispatch(slice.actions.next())
+  await api.dispatch(paginate())
+})
+
 export const store = createAsyncThunk('role/store', async (_, api) => {
   const state = api.getState() as RootState
   const { processing, form } = state.role
@@ -212,6 +236,12 @@ export const slice = createSlice({
   name,
   initialState,
   reducers: {
+    previous(state: State) {
+      state.paginator.page--
+    },
+    next(state: State) {
+      state.paginator.page++
+    },
     edit(state: State, { payload }: PayloadAction<Role>) {
       state.form.id = payload.id
       state.form.name = payload.name

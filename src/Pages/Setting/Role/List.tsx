@@ -1,15 +1,16 @@
 import Icon from "@mdi/react"
 import Button from "../../../Components/Button"
 import { useAppDispatch, useAppSelector } from "../../../hooks"
-import { mdiDelete, mdiPen, mdiPlus } from "@mdi/js"
+import { mdiChevronLeft, mdiChevronRight, mdiDelete, mdiPen, mdiPlus } from "@mdi/js"
 import { Link, useParams } from "react-router-dom"
 import classNames from "classnames"
-import { destroy, edit, toggle } from "../../../store/role"
+import { destroy, edit, next, previous, toggle } from "../../../store/role"
 
 export default function List() {
   const dispatch = useAppDispatch()
-  const roles = useAppSelector(state => state.role.paginated.data)
   const { id } = useParams()
+  const roles = useAppSelector(state => state.role.paginated.data)
+  const paginated = useAppSelector(state => state.role.paginated)
 
   return (
     <div className="col-span-4 overflow-y-scroll" style={{
@@ -29,6 +30,7 @@ export default function List() {
           return (
             <Link key={role.id} to={`/setting/role/${role.id}`} className={classNames("flex items-center space-x-1 justify-between hover:bg-gray-100 border-r-4 hover:border-primary-0 py-2 px-4 hover:pl-6 hover:font-medium capitalize transition-all", {
               'bg-gray-100 pl-6 border-primary-0 font-medium': id === role.id,
+              'border-transparent': id !== role.id,
             })}>
               <p>{role.title}</p>
               <div className="flex items-center space-x-1">
@@ -44,6 +46,19 @@ export default function List() {
             </Link>
           )
         })}
+        <div className="flex items-center justify-end border-t pt-4 px-4">
+          <div className="flex border rounded-md">
+            <Button onClick={() => dispatch(previous())} color="light" className="rounded-r-none px-1.5">
+              <Icon path={mdiChevronLeft} size={.5} />
+            </Button>
+            <div className="bg-primary px-2 py-1 font-medium text-white border border-primary-0">
+              {paginated.meta.current_page}
+            </div>
+            <Button onClick={() => dispatch(next())} color="light" className="rounded-l-none px-1.5">
+              <Icon path={mdiChevronRight} size={.5} />
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   )

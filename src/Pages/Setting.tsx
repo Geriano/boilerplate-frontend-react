@@ -14,6 +14,7 @@ export default function Setting() {
           {role.has(['superuser', 'dev']) && (
             <SettingDropdown actives={['/setting/general']} label="Setup">
               <SettingMenu to="/setting/general">General</SettingMenu>
+              <SettingMenu to="/setting/translation">Translation</SettingMenu>
             </SettingDropdown>
           )}
 

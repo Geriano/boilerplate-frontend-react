@@ -18,7 +18,9 @@ import General from './Pages/Setting/General'
 import Permission from './Pages/Setting/Permission'
 import Role from './Pages/Setting/Role'
 import User from './Pages/Setting/User'
-import Configuration from './Pages/Setting/Role/Configuration'
+import RolePermissionConfiguration from './Pages/Setting/Role/Configuration'
+import UserPermissionConfiguration from './Pages/Setting/UserPermission/Configuration'
+import UserPermission from './Pages/Setting/UserPermission'
 
 declare global {
   interface Window { components: {
@@ -37,9 +39,13 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <Route path='/setting/permission' element={<Permission />} />
               <Route path='/setting/role' element={<Role />}>
                 <Route path='/setting/role' />
-                <Route path='/setting/role/:id' element={<Configuration />} />
+                <Route path='/setting/role/:id' element={<RolePermissionConfiguration />} />
               </Route>
               <Route path='/setting/user' element={<User />} />
+              <Route path='/setting/user/permission' element={<UserPermission />}>
+                <Route path='/setting/user/permission' />
+                <Route path='/setting/user/permission/:id' element={<UserPermissionConfiguration />} />
+              </Route>
             </Route>
           </Route>
           <Route path='/' element={<AuthLayout />}>

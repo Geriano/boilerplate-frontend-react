@@ -83,6 +83,10 @@ export const services = {
     path: '/superuser/user/{id}',
     params: ['id'],
   },
+  'user.toggle-permission': {
+    path: '/superuser/user/{user}/permission/{permission}',
+    params: ['user', 'permission'],
+  },
 }
 
 export type Services = typeof services

@@ -7,6 +7,7 @@ import user from "../_services/user"
 import { AxiosError } from "axios"
 import { ErrorResponse } from "../_interfaces/response"
 import Swal from "sweetalert2"
+import { Permission } from "../_interfaces/permission"
 
 export const name = 'user'
 export const initialState: State = {
@@ -230,6 +231,12 @@ export const destroy = createAsyncThunk('user/destroy', async (id: string, api) 
     await api.dispatch(paginate())
     api.dispatch(toggle(false))
   }
+})
+
+export const togglePermission = createAsyncThunk('user/toggle-permission', async (payload: { user: User, permission: Permission }, api) => {
+  const { response } = await user.togglePermission(payload.user.id, payload.permission.id)
+  await api.dispatch(paginate())
+  console.log(response)
 })
 
 export const slice = createSlice({

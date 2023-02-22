@@ -51,6 +51,7 @@ export type StoreSuccessResponse = SuccessResponse<Response>
 export type ShowSuccessResponse = SuccessResponse<User>
 export type UpdateSuccessResponse = SuccessResponse<Response>
 export type DestroySuccessResponse = SuccessResponse<Response>
+export type TogglePermissionSuccessResponse = SuccessResponse<Response>
 export type ValidationErrorResponse = {
   errors: {
     field: keyof Form

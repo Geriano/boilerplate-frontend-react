@@ -1,7 +1,7 @@
 import axios from "axios"
 import { Paginator } from "../_interfaces/pagination"
 import { route } from "../_backend/routes"
-import { DestroySuccessResponse, Form, PaginatedResponse, ShowSuccessResponse, StoreSuccessResponse, UpdateSuccessResponse } from "../_interfaces/user"
+import { DestroySuccessResponse, Form, PaginatedResponse, ShowSuccessResponse, StoreSuccessResponse, TogglePermissionSuccessResponse, UpdateSuccessResponse } from "../_interfaces/user"
 import { sanitizePaginatorQuery } from "../helper"
 
 export const paginate = async (paginator: Paginator) => {
@@ -34,6 +34,14 @@ export const destroy = async (id: string) => {
   return { status, response }
 }
 
+export const togglePermission = async (user: string, permission: string) => {
+  const { status, data: response } = await axios.put(route('user.toggle-permission', {
+    user, permission
+  })) as TogglePermissionSuccessResponse
+
+  return { status, response }
+}
+
 export default {
-  paginate, store, show, update, destroy,
+  paginate, store, show, update, destroy, togglePermission
 }

@@ -17,7 +17,7 @@ export default function List() {
       minHeight: 'calc(100vh - 8rem)'
     }}>
       <div className="flex flex-col bg-white rounded-md shadow py-4">
-        <div className="flex items-center justify-between mb-4 px-4">
+        <div className="flex items-center justify-between border-b pb-4 px-4">
           <h3 className="font-medium">Role list</h3>
           <Button onClick={() => dispatch(toggle({
             type: 'form',

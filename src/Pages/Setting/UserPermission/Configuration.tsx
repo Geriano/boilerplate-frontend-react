@@ -9,7 +9,7 @@ export default function Configuration() {
   const permissions = useAppSelector(state => state.permission.permissions)
 
   if (!user) {
-    return <Navigate to="/setting/user" />
+    return <Navigate to="/setting/user/permission" />
   }
 
   return (

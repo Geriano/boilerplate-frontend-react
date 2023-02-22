@@ -1,73 +1,81 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { Role, State, ValidationErrorResponse } from "../_interfaces/role"
+import { OrderColumn, State, User, ValidationErrorResponse } from "../_interfaces/user"
 import { createInitialPaginatedState, createInitialPaginatorState } from "../helper"
 import { Paginated } from "../_interfaces/pagination"
 import { RootState } from "../store"
-import role from "../_services/role"
+import user from "../_services/user"
 import { AxiosError } from "axios"
 import { ErrorResponse } from "../_interfaces/response"
 import Swal from "sweetalert2"
-import { Permission } from "../_interfaces/permission"
 
-export const name = 'role'
+export const name = 'user'
 export const initialState: State = {
   timeout: null,
   processing: false,
-  open: {
-    form: false,
-    list: false,
-  },
-  paginator: createInitialPaginatorState('key'),
-  paginated: createInitialPaginatedState<Role>(),
+  open: false,
+  paginator: createInitialPaginatorState('name'),
+  paginated: createInitialPaginatedState<User>(),
   form: {
     id: '',
     name: '',
-    key: '',
+    email: '',
+    username: '',
+    password: '',
+    password_confirmation: '',
     permissions: [],
+    roles: [],
   },
   errors: {
     id: '',
     name: '',
-    key: '',
+    email: '',
+    username: '',
+    password: '',
+    password_confirmation: '',
     permissions: '',
+    roles: '',
   },
 }
 
-export const paginate = createAsyncThunk('role/paginate', async (_, api) => {
+export const paginate = createAsyncThunk('user/paginate', async (_, api) => {
   const state = api.getState() as RootState
-  const { paginator } = state.role
+  const { timeout, paginator } = state.user
 
-  state.role.timeout && clearTimeout(state.role.timeout)
-  api.dispatch(timeout(
+  timeout && clearTimeout(timeout)
+  api.dispatch(slice.actions.timeout(
     setTimeout(async () => {
-      try {
-        const { response } = await role.paginate(paginator)
-        api.dispatch(paginated(response))
-      } catch (e) {
-        if (e instanceof AxiosError) {
-          if (e.response!.status !== 422) {
-            throw e
-          }
-
-          console.log(e.response!.data)
-        } else {
-          throw e
-        }
-      }
+      const { response } = await user.paginate(paginator)
+      api.dispatch(slice.actions.paginated(response))
     }, 200)
   ))
 })
 
-export const search = createAsyncThunk('role/search', async (search: string, api) => {
+export const search = createAsyncThunk('user/search', async (search: string, api) => {
   api.dispatch(slice.actions.search(search))
   await api.dispatch(paginate())
 })
 
-export const previous = createAsyncThunk('role/previous', async (_, api) => {
-  const state = api.getState() as RootState
-  const { paginated } = state.role
+export const limit = createAsyncThunk('user/limit', async (limit: number, api) => {
+  api.dispatch(slice.actions.limit(limit))
+  await api.dispatch(paginate())
+})
 
-  if (paginated.meta.current_page - 1 < 1) {
+export const order = createAsyncThunk('user/order', async (key: OrderColumn, api) => {
+  const state = api.getState() as RootState
+  const paginator = state.user.paginator
+  const dir = paginator.order.key === key ? (paginator.order.dir === 'asc' ? 'desc' : 'asc') : 'asc'
+  api.dispatch(slice.actions.order({
+    dir, key,
+  }))
+
+  await api.dispatch(paginate())
+})
+
+export const previous = createAsyncThunk('user/previous', async (_, api) => {
+  const state = api.getState() as RootState
+  const page = state.user.paginator.page
+
+  if (page - 1 < 1) {
     return
   }
 
@@ -75,11 +83,12 @@ export const previous = createAsyncThunk('role/previous', async (_, api) => {
   await api.dispatch(paginate())
 })
 
-export const next = createAsyncThunk('role/next', async (_, api) => {
+export const next = createAsyncThunk('user/next', async (_, api) => {
   const state = api.getState() as RootState
-  const { paginated } = state.role
+  const paginated = state.user.paginated
+  const page = state.user.paginator.page
 
-  if (paginated.meta.current_page + 1 > paginated.meta.last_page) {
+  if (page + 1 > paginated.meta.last_page) {
     return
   }
 
@@ -87,23 +96,69 @@ export const next = createAsyncThunk('role/next', async (_, api) => {
   await api.dispatch(paginate())
 })
 
-export const store = createAsyncThunk('role/store', async (_, api) => {
+export const store = createAsyncThunk('user/store', async (_, api) => {
   const state = api.getState() as RootState
-  const { processing, form } = state.role
+  const { processing, form } = state.user
 
   if (processing) {
     return
   }
 
   try {
-    api.dispatch(clearError())
     api.dispatch(process(true))
-    const { response } = await role.store(form)
+    const { response } = await user.store(form)
 
     console.log(response)
+    api.dispatch(toggle(false))
+    api.dispatch(clearError())
+    api.dispatch(reset())
   } catch (e) {
     if (e instanceof AxiosError) {
       const response = e.response! as ErrorResponse<unknown>
+
+      if (response.status === 422) {
+        const data = response.data as ValidationErrorResponse
+
+        data.errors.forEach(error => {
+          api.dispatch(setError({
+            key: error.field,
+            value: error.message,
+          }))
+        })
+
+      } else {
+        throw e
+      }
+    } else {
+      throw e
+    }
+  } finally {
+    api.dispatch(process(false))
+    await api.dispatch(paginate())
+  }
+})
+
+export const update = createAsyncThunk('user/update', async (_, api) => {
+  const state = api.getState() as RootState
+  const { processing, form } = state.user
+
+  if (processing) {
+    return
+  }
+
+  try {
+    api.dispatch(process(true))
+    const { response } = await user.update(form.id!, form)
+
+    console.log(response)
+    api.dispatch(toggle(false))
+    api.dispatch(clearError())
+    api.dispatch(reset())
+  } catch (e) {
+    if (e instanceof AxiosError) {
+      const response = e.response! as ErrorResponse<unknown>
+
+      console.log(response)
 
       if (response.status === 422) {
         const data = response.data as ValidationErrorResponse
@@ -123,16 +178,12 @@ export const store = createAsyncThunk('role/store', async (_, api) => {
   } finally {
     api.dispatch(process(false))
     await api.dispatch(paginate())
-    api.dispatch(toggle({
-      type: 'form',
-      open: false,
-    }))
   }
 })
 
-export const update = createAsyncThunk('role/update', async (_, api) => {
+export const destroy = createAsyncThunk('user/destroy', async (id: string, api) => {
   const state = api.getState() as RootState
-  const { processing, form } = state.role
+  const { processing } = state.user
 
   if (processing) {
     return
@@ -141,54 +192,7 @@ export const update = createAsyncThunk('role/update', async (_, api) => {
   try {
     api.dispatch(clearError())
     api.dispatch(process(true))
-    const { response } = await role.update(form.id!, form)
-
-    console.log(response)
-  } catch (e) {
-    if (e instanceof AxiosError) {
-      const response = e.response! as ErrorResponse<unknown>
-
-      if (response.status === 422) {
-        const data = response.data as ValidationErrorResponse
-
-        data.errors.forEach(error => {
-          api.dispatch(setError({
-            key: error.field,
-            value: error.message,
-          }))
-        })
-      } else {
-        throw e
-      }
-    } else {
-      throw e
-    }
-  } finally {
-    api.dispatch(process(false))
-    await api.dispatch(paginate())
-    api.dispatch(toggle({
-      type: 'form',
-      open: false,
-    }))
-  }
-})
-
-export const destroy = createAsyncThunk('role/destroy', async (id: string, api) => {
-  const state = api.getState() as RootState
-  const { processing } = state.role
-
-  if (processing) {
-    return
-  }
-
-  api.dispatch(toggle({
-    type: 'form',
-    open: false,
-  }))
-
-  try {
-    api.dispatch(clearError())
-    api.dispatch(process(true))
+    api.dispatch(toggle(false))
     const { isConfirmed } = await Swal.fire({
       title: `are you sure?`,
       text: `you can't revert your action after deleted`,
@@ -198,7 +202,7 @@ export const destroy = createAsyncThunk('role/destroy', async (id: string, api) 
     })
 
     if (isConfirmed) {
-      const { response } = await role.destroy(id)
+      const { response } = await user.destroy(id)
   
       console.log(response)
     }
@@ -224,25 +228,22 @@ export const destroy = createAsyncThunk('role/destroy', async (id: string, api) 
   } finally {
     api.dispatch(process(false))
     await api.dispatch(paginate())
-    api.dispatch(toggle({
-      type: 'form',
-      open: false,
-    }))
+    api.dispatch(toggle(false))
   }
-})
-
-export const togglePermission = createAsyncThunk('role/toggle-permission', async (payload: { role: Role, permission: Permission }, api) => {
-  const { response } = await role.togglePermission(payload.role.id, payload.permission.id)
-  await api.dispatch(paginate())
-  console.log(response)
 })
 
 export const slice = createSlice({
   name,
   initialState,
   reducers: {
+    timeout(state: State, { payload }: PayloadAction<number|null>) {
+      state.timeout = payload
+    },
     search(state: State, { payload }: PayloadAction<string>) {
       state.paginator.search = payload
+    },
+    limit(state: State, { payload }: PayloadAction<number>) {
+      state.paginator.limit = payload
     },
     previous(state: State) {
       state.paginator.page--
@@ -250,31 +251,23 @@ export const slice = createSlice({
     next(state: State) {
       state.paginator.page++
     },
-    edit(state: State, { payload }: PayloadAction<Role>) {
-      state.form.id = payload.id
-      state.form.name = payload.name
-      state.form.key = payload.key
-
-      state.open.form = true
-    },
-    timeout(state: State, { payload }: PayloadAction<number>) {
-      state.timeout = payload
+    order(state: State, { payload }: PayloadAction<{ dir: 'asc'|'desc', key: OrderColumn }>) {
+      state.paginator.order.dir = payload.dir
+      state.paginator.order.key = payload.key
     },
     process(state: State, { payload }: PayloadAction<boolean|undefined>) {
       state.processing = payload ? payload : ! state.processing
     },
-    toggle<T extends keyof State['open']>(state: State, { payload }: PayloadAction<{ type: T, open: boolean|undefined }>) {
-      const { type, open } = payload
-      state.open[type] = open ? open : ! state.open[type]
+    toggle(state: State, { payload }: PayloadAction<boolean|undefined>) {
+      state.open = payload !== undefined ? payload : ! state.open
     },
-    paginated(state: State, { payload }: PayloadAction<Paginated<Role>>) {
+    paginated(state: State, { payload }: PayloadAction<Paginated<User>>) {
       state.paginated = payload
     },
     set<T extends keyof State['form'], U extends State['form'][T]>(state: State, { payload }: PayloadAction<{ key: T, value: U }>) {
-      const { key, value } = payload
-      state.form[key] = value
+      state.form[payload.key] = payload.value
     },
-    reset<T extends keyof State['form']|undefined>(state: State, { payload }: PayloadAction<T>) {
+    reset<T extends keyof State['form']>(state: State, { payload }: PayloadAction<T|undefined>) {
       if (payload) {
         state.form[payload] = initialState.form[payload]
       } else {
@@ -284,16 +277,26 @@ export const slice = createSlice({
     setError<T extends keyof State['errors']>(state: State, { payload }: PayloadAction<{ key: T, value: string }>) {
       state.errors[payload.key] = payload.value
     },
-    clearError<T extends keyof State['errors']|undefined>(state: State, { payload }: PayloadAction<T>) {
+    clearError<T extends keyof State['errors']>(state: State, { payload }: PayloadAction<T|undefined>) {
       if (payload) {
         state.errors[payload] = initialState.errors[payload]
       } else {
         state.errors = initialState.errors
       }
     },
+    edit(state: State, { payload }: PayloadAction<User>) {
+      state.form.id = payload.id
+      state.form.name = payload.name
+      state.form.email = payload.email
+      state.form.username = payload.username
+      state.form.permissions = payload.permissions.map(permission => permission.key)
+      state.form.roles = payload.roles.map(role => role.key)
+
+      state.open = true
+    },
   },
 })
 
-export const { edit, timeout, process, toggle, paginated, set, reset, setError, clearError } = slice.actions
+export const { process, toggle, paginated, set, reset, setError, clearError, edit } = slice.actions
 
 export default slice.reducer

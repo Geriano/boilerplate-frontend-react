@@ -63,6 +63,26 @@ export const services = {
     path: '/superuser/role/{role}/toggle-permission/{permission}',
     params: ['role', 'permission'],
   },
+  'user.paginate': {
+    path: '/superuser/user',
+    params: [],
+  },
+  'user.store': {
+    path: '/superuser/user',
+    params: [],
+  },
+  'user.show': {
+    path: '/superuser/user/{id}',
+    params: ['id'],
+  },
+  'user.update': {
+    path: '/superuser/user/{id}',
+    params: ['id'],
+  },
+  'user.destroy': {
+    path: '/superuser/user/{id}',
+    params: ['id'],
+  },
 }
 
 export type Services = typeof services

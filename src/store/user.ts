@@ -239,6 +239,12 @@ export const togglePermission = createAsyncThunk('user/toggle-permission', async
   console.log(response)
 })
 
+export const toggleRole = createAsyncThunk('user/toggle-role', async (payload: { user: User, role: Permission }, api) => {
+  const { response } = await user.toggleRole(payload.user.id, payload.role.id)
+  await api.dispatch(paginate())
+  console.log(response)
+})
+
 export const slice = createSlice({
   name,
   initialState,

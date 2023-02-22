@@ -29,11 +29,11 @@ export default function Setting() {
               )}
 
               {permission.has(['create user', 'read user', 'update user', 'delete user']) && (
-                <SettingMenu to="/setting/user">User</SettingMenu>
-              )}
-
-              {permission.has(['read user', 'update user']) && (
-                <SettingMenu to="/setting/user/permission">User Permission</SettingMenu>
+                <>
+                  <SettingMenu to="/setting/user">User</SettingMenu>
+                  <SettingMenu to="/setting/user/permission">User Permission</SettingMenu>
+                  <SettingMenu to="/setting/user/role">User Role</SettingMenu>
+                </>
               )}
             </SettingDropdown>
           )}

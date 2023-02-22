@@ -7,10 +7,7 @@ import { sanitizePaginatorQuery } from "../helper"
 
 export const paginate = async (paginator: Paginator) => {
   const query = sanitizePaginatorQuery(paginator)
-  const { status, data: response } = await axios.get(route('role.paginate', {
-    ...query,
-    limit: 5,
-  })) as PaginatedResponse
+  const { status, data: response } = await axios.get(route('role.paginate', query)) as PaginatedResponse
 
   return { status, response }
 }

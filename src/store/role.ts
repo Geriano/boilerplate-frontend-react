@@ -58,6 +58,11 @@ export const paginate = createAsyncThunk('role/paginate', async (_, api) => {
   ))
 })
 
+export const limit = createAsyncThunk('role/limit', async (limit: number, api) => {
+  api.dispatch(slice.actions.limit(limit))
+  await api.dispatch(paginate())
+})
+
 export const search = createAsyncThunk('role/search', async (search: string, api) => {
   api.dispatch(slice.actions.search(search))
   await api.dispatch(paginate())
@@ -241,6 +246,9 @@ export const slice = createSlice({
   name,
   initialState,
   reducers: {
+    limit(state: State, { payload }: PayloadAction<number>) {
+      state.paginator.limit = payload
+    },
     search(state: State, { payload }: PayloadAction<string>) {
       state.paginator.search = payload
     },

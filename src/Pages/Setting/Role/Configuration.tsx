@@ -1,11 +1,6 @@
-import { Navigate, useParams } from "react-router-dom";
-import Button from "../../../Components/Button";
-import Icon from "@mdi/react";
-import { mdiPlus } from "@mdi/js";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { Role } from "../../../_interfaces/role";
-import { Permission } from "../../../_interfaces/permission";
-import { togglePermission } from "../../../store/role";
+import { Navigate, useParams } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "../../../hooks"
+import { togglePermission } from "../../../store/role"
 
 export default function Configuration() {
   const dispatch = useAppDispatch()

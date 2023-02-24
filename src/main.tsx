@@ -23,6 +23,7 @@ import UserPermissionConfiguration from './Pages/Setting/UserPermission/Configur
 import UserPermission from './Pages/Setting/UserPermission'
 import UserRoleConfiguration from './Pages/Setting/UserRole/Configuration'
 import UserRole from './Pages/Setting/UserRole'
+import Translation from './Pages/Setting/Translation'
 
 declare global {
   interface Window { components: {
@@ -38,6 +39,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path='/' element={<DashboardLayout />}>
             <Route path='/setting' element={<Setting />}>
               <Route path='/setting/general' element={<General />} />
+              <Route path='/setting/translation' element={<Translation />} />
               <Route path='/setting/permission' element={<Permission />} />
               <Route path='/setting/role' element={<Role />}>
                 <Route path='/setting/role' />

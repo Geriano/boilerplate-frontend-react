@@ -91,6 +91,22 @@ export const services = {
     path: '/superuser/user/{user}/role/{role}',
     params: ['user', 'role'],
   },
+  'translation.index': {
+    path: '/translation',
+    params: [],
+  },
+  'translation.list': {
+    path: '/translation/{id}',
+    params: ['id'],
+  },
+  'translation.show': {
+    path: '/translation/{id}/{name}',
+    params: ['id', 'name'],
+  },
+  'translation.update': {
+    path: '/translation/{id}/{name}',
+    params: ['id', 'name'],
+  },
 }
 
 export type Services = typeof services

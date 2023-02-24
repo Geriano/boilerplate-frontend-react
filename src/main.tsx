@@ -9,6 +9,7 @@ import {
   createRoutesFromElements,
   RouterProvider,
   Route,
+  Navigate,
 } from "react-router-dom"
 import DashboardLayout from './Layouts/DashboardLayout'
 import AuthLayout from './Layouts/AuthLayout'
@@ -45,6 +46,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path='/' element={<DashboardLayout />}>
             <Route path="/" element={<Dashboard />} />
             <Route path='/setting' element={<Setting />}>
+              <Route path='/setting' element={<Navigate to="/setting/general" />} />
               <Route path='/setting/general' element={<General />} />
               <Route path='/setting/translation' element={<Translation />} />
               <Route path='/setting/permission' element={<Permission />} />

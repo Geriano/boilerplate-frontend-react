@@ -24,12 +24,17 @@ import UserPermission from './Pages/Setting/UserPermission'
 import UserRoleConfiguration from './Pages/Setting/UserRole/Configuration'
 import UserRole from './Pages/Setting/UserRole'
 import Translation from './Pages/Setting/Translation'
+import axios from 'axios'
+import { route } from './_backend/routes'
 
-declare global {
-  interface Window { components: {
-    [name: string]: () => JSX.Element
-  }; }
-}
+Object.defineProperties(window, {
+  axios: {
+    value: axios,
+  },
+  route: {
+    value: route,
+  },
+})
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

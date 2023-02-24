@@ -26,6 +26,7 @@ import UserRole from './Pages/Setting/UserRole'
 import Translation from './Pages/Setting/Translation'
 import axios from 'axios'
 import { route } from './_backend/routes'
+import Dashboard from './Pages/Dashboard'
 
 Object.defineProperties(window, {
   axios: {
@@ -42,6 +43,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <RouterProvider router={createBrowserRouter(createRoutesFromElements(
         <>
           <Route path='/' element={<DashboardLayout />}>
+            <Route path="/" element={<Dashboard />} />
             <Route path='/setting' element={<Setting />}>
               <Route path='/setting/general' element={<General />} />
               <Route path='/setting/translation' element={<Translation />} />

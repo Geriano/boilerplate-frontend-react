@@ -107,6 +107,10 @@ export const services = {
     path: '/translation/{id}/{name}',
     params: ['id', 'name'],
   },
+  'incoming-request.average': {
+    path: '/incoming-request/average',
+    params: [],
+  },
 }
 
 export type Services = typeof services

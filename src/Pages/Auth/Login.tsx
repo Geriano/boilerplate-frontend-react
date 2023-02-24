@@ -58,7 +58,7 @@ export default function Login() {
       </div>
 
       <div className="flex items-center justify-end bg-gray-100 px-4 py-1 rounded-b-md">
-        <Button type="submit" title="Login" color="primary">
+        <Button type="submit" title="Login" color="primary" className="text-white font-medium">
           {processing && (
             <div className="animate-spin">
               <Icon path={mdiLoading} size={.75} />

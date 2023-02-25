@@ -1,9 +1,9 @@
 import { mdiChevronDown } from "@mdi/js"
-import Icon from "@mdi/react"
-import classNames from "classnames"
 import { PropsWithChildren, useState, MouseEvent, useRef } from "react"
 import { useLocation } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
+import Icon from "@mdi/react"
+import classNames from "classnames"
 
 type Props = {
   label: string

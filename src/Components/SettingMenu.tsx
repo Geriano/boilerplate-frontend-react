@@ -1,6 +1,6 @@
-import classNames from "classnames"
 import { PropsWithChildren } from "react"
 import { Link, useLocation } from "react-router-dom"
+import classNames from "classnames"
 
 type Props = {
   to: string

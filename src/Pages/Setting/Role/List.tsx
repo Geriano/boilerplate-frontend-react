@@ -1,10 +1,10 @@
-import Icon from "@mdi/react"
-import Button from "../../../Components/Button"
 import { useAppDispatch, useAppSelector } from "../../../hooks"
 import { mdiChevronLeft, mdiChevronRight, mdiDelete, mdiPen, mdiPlus } from "@mdi/js"
 import { Link, useParams } from "react-router-dom"
-import classNames from "classnames"
 import { destroy, edit, next, previous, toggle } from "../../../store/role"
+import Button from "../../../Components/Button"
+import classNames from "classnames"
+import Icon from "@mdi/react"
 
 export default function List() {
   const dispatch = useAppDispatch()

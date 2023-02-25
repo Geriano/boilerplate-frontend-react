@@ -1,9 +1,9 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { Permission, State, ValidationErrorResponse } from "../_interfaces/permission"
-import permission from "../_services/permission"
 import { RootState } from "../store"
 import { AxiosError } from "axios"
 import { ErrorResponse } from "../_interfaces/response"
+import permission from "../_services/permission"
 import Swal from "sweetalert2"
 import * as toast from "./toast"
 

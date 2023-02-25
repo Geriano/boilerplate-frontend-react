@@ -2,13 +2,13 @@ import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../hooks"
 import { all } from "../../store/permission"
 import { paginate, search, toggle } from "../../store/user"
-import Button from "../../Components/Button"
-import Icon from "@mdi/react"
 import { mdiPlus } from "@mdi/js"
-import FloatingInput2 from "../../Components/FloatingInput2"
-import Table from "./User/Table"
-import Links from "./User/Links"
+import Button from "../../Components/Button"
 import Form from "./User/Form"
+import FloatingInput2 from "../../Components/FloatingInput2"
+import Icon from "@mdi/react"
+import Links from "./User/Links"
+import Table from "./User/Table"
 
 export default function User() {
   const dispatch = useAppDispatch()

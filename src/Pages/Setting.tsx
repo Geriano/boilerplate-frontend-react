@@ -1,7 +1,7 @@
 import { usePermission, useRole } from "../hooks"
+import { Outlet } from "react-router-dom"
 import SettingDropdown from "../Components/SettingDropdown"
 import SettingMenu from "../Components/SettingMenu"
-import { Outlet } from "react-router-dom"
 
 export default function Setting() {
   const role = useRole()

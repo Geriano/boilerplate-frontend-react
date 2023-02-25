@@ -1,9 +1,9 @@
-import axios from "axios"
 import { route } from "../_backend/routes"
 import { Paginator } from "../_interfaces/pagination"
 import { DestroySuccessResponse, Form, PaginatedResponse, ShowSuccessResponse, StoreSuccessResponse, TogglePermissionSuccessResponse } from "../_interfaces/role"
 import { UpdateSuccessResponse } from "../_interfaces/permission"
 import { sanitizePaginatorQuery } from "../helper"
+import axios from "axios"
 
 export const paginate = async (paginator: Paginator) => {
   const query = sanitizePaginatorQuery(paginator)

@@ -1,8 +1,8 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { LoginForm, LoginValidationError, State, User } from "../_interfaces/auth"
+import { RootState } from "../store"
 import axios, { AxiosError } from "axios"
 import auth from "../_services/auth"
-import { RootState } from "../store"
 import * as toast from "./toast"
 
 export const name = 'auth'

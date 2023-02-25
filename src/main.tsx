@@ -1,9 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import store from './store'
 import './index.css'
 import { Provider } from 'react-redux'
-import store from './store'
-import './interceptor'
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -11,6 +10,10 @@ import {
   Route,
   Navigate,
 } from "react-router-dom"
+import './interceptor'
+import axios from 'axios'
+import { route } from './_backend/routes'
+
 import DashboardLayout from './Layouts/DashboardLayout'
 import AuthLayout from './Layouts/AuthLayout'
 import Login from './Pages/Auth/Login'
@@ -25,8 +28,6 @@ import UserPermission from './Pages/Setting/UserPermission'
 import UserRoleConfiguration from './Pages/Setting/UserRole/Configuration'
 import UserRole from './Pages/Setting/UserRole'
 import Translation from './Pages/Setting/Translation'
-import axios from 'axios'
-import { route } from './_backend/routes'
 import Dashboard from './Pages/Dashboard'
 import Profile from './Pages/Profile'
 

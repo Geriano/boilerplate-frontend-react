@@ -1,7 +1,7 @@
-import classNames from "classnames";
-import { useAppSelector } from "../../hooks";
-import SidebarToggler from "./SidebarToggler";
-import TopbarDropdown from "./TopbarDropdown";
+import { useAppSelector } from "../../hooks"
+import classNames from "classnames"
+import SidebarToggler from "./SidebarToggler"
+import TopbarDropdown from "./TopbarDropdown"
 
 export default function Topbar() {
   const theme = useAppSelector(state => state.layout.theme)

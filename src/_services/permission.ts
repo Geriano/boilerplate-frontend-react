@@ -1,6 +1,6 @@
-import axios from "axios"
 import { route } from "../_backend/routes"
 import { AllResponse, DestroySuccessResponse, State, StoreSuccessResponse, UpdateSuccessResponse } from "../_interfaces/permission"
+import axios from "axios"
 
 export const all = async () => {
   const { status, data: response } = await axios.get(route('permission.all')) as AllResponse

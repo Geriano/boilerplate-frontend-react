@@ -1,6 +1,6 @@
-import axios from "axios"
 import { route } from "../_backend/routes"
 import { GetLanguageSuccessResponse, ListSuccessResponse, Recursive, ShowSuccessResponse, UpdateSuccessResponse } from "../_interfaces/translation"
+import axios from "axios"
 
 export const index = async () => {
   const { status, data: response } = await axios.get(route('translation.index')) as GetLanguageSuccessResponse

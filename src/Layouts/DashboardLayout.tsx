@@ -1,8 +1,8 @@
-import classNames from "classnames"
+import { Navigate, Outlet, useLocation } from "react-router-dom"
 import { useAppSelector } from "../hooks"
+import classNames from "classnames"
 import Sidebar from "./DashboardLayout/Sidebar"
 import Topbar from "./DashboardLayout/Topbar"
-import { Navigate, Outlet, useLocation } from "react-router-dom"
 
 
 export default function DashboardLayout() {
@@ -12,7 +12,8 @@ export default function DashboardLayout() {
   const query = location.search
 
   if (!authenticated) {
-    return <Navigate to={`/login?from=${location.pathname}${query}`} />
+    const url = location.pathname.includes('?') ? location.pathname + query.replace(/^\?/, '&') : query
+    return <Navigate to={`/login?from=${url}`} />
   }
 
   return (

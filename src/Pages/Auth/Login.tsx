@@ -1,9 +1,9 @@
-import Icon from "@mdi/react";
-import Button from "../../Components/Button";
-import FloatingInput2 from "../../Components/FloatingInput2";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { login, set } from "../../store/auth";
-import { mdiLoading } from "@mdi/js";
+import { useAppDispatch, useAppSelector } from "../../hooks"
+import { login, set } from "../../store/auth"
+import { mdiLoading } from "@mdi/js"
+import Button from "../../Components/Button"
+import FloatingInput2 from "../../Components/FloatingInput2"
+import Icon from "@mdi/react"
 
 export default function Login() {
   const dispatch = useAppDispatch()

@@ -3,11 +3,11 @@ import { OrderColumn, State, User, ValidationErrorResponse } from "../_interface
 import { createInitialPaginatedState, createInitialPaginatorState } from "../helper"
 import { Paginated } from "../_interfaces/pagination"
 import { RootState } from "../store"
-import user from "../_services/user"
 import { AxiosError } from "axios"
 import { ErrorResponse } from "../_interfaces/response"
-import Swal from "sweetalert2"
 import { Permission } from "../_interfaces/permission"
+import user from "../_services/user"
+import Swal from "sweetalert2"
 import * as toast from "./toast"
 
 export const name = 'user'
@@ -247,7 +247,7 @@ export const destroy = createAsyncThunk('user/destroy', async (id: string, api) 
   }
 })
 
-export const togglePermission = createAsyncThunk('user/toggle-permission', async (payload: { user: User, permission: Permission }, api) => {
+export const togglePermission = createAsyncThunk('user/togglePermission', async (payload: { user: User, permission: Permission }, api) => {
   try {
     const { response } = await user.togglePermission(payload.user.id, payload.permission.id)
     api.dispatch(toast.success(response.message))
@@ -264,7 +264,7 @@ export const togglePermission = createAsyncThunk('user/toggle-permission', async
   }
 })
 
-export const toggleRole = createAsyncThunk('user/toggle-role', async (payload: { user: User, role: Permission }, api) => {
+export const toggleRole = createAsyncThunk('user/toggleRole', async (payload: { user: User, role: Permission }, api) => {
   try {
     const { response } = await user.toggleRole(payload.user.id, payload.role.id)
 

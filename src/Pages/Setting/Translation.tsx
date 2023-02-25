@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import List from "./Translation/List";
-import { languages } from "../../store/translation";
-import Configuration from "./Translation/Configuration";
+import { useEffect } from "react"
+import { useAppDispatch, useAppSelector } from "../../hooks"
+import { languages } from "../../store/translation"
+import Configuration from "./Translation/Configuration"
+import List from "./Translation/List"
 
 export default function Translation() {
   const dispatch = useAppDispatch()

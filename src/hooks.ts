@@ -1,6 +1,6 @@
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "./store"
-import { Role as R, Permission as P } from "./_interfaces/auth"
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
+import { Role as RoleModel, Permission as PermissionModel } from "./_interfaces/auth"
 
 export const useAppDispatch: () => AppDispatch = useDispatch
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
@@ -9,7 +9,7 @@ export const useRole = () => {
   const { user } = useAppSelector(state => state.auth)
 
   return new class Role {
-    protected roles: R[]
+    protected roles: RoleModel[]
 
     constructor() {
       this.roles = user.roles
@@ -39,10 +39,10 @@ export const usePermission = () => {
   const { user } = useAppSelector(state => state.auth)
 
   return new class Permission {
-    protected permissions: P[]
+    protected permissions: PermissionModel[]
 
     constructor() {
-      this.permissions = user.roles.reduce((permissions: P[], role: R) => {
+      this.permissions = user.roles.reduce((permissions: PermissionModel[], role: RoleModel) => {
         return permissions.concat(...role.permissions)
       }, user.permissions)
     }

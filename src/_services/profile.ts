@@ -1,6 +1,6 @@
-import axios from "axios";
-import { UpdatePasswordForm, UpdateProfileInformationForm, UpdateSuccessResponse } from "../_interfaces/profile";
-import { route } from "../_backend/routes";
+import { UpdatePasswordForm, UpdateProfileInformationForm, UpdateSuccessResponse } from "../_interfaces/profile"
+import { route } from "../_backend/routes"
+import axios from "axios"
 
 export const updateProfileInformation = async (form: UpdateProfileInformationForm) => {
   const { status, data: response } = await axios.put(route('auth.update-profile-information'), form) as UpdateSuccessResponse

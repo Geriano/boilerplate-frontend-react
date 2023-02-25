@@ -1,9 +1,9 @@
-import Icon from "@mdi/react";
-import Button from "../../../Components/Button";
-import { Permission } from "../../../_interfaces/permission";
-import { mdiDelete, mdiPen } from "@mdi/js";
-import { useAppDispatch, usePermission } from "../../../hooks";
-import { destroy, edit } from "../../../store/permission";
+import { Permission } from "../../../_interfaces/permission"
+import { mdiDelete, mdiPen } from "@mdi/js"
+import { useAppDispatch, usePermission } from "../../../hooks"
+import { destroy, edit } from "../../../store/permission"
+import Button from "../../../Components/Button"
+import Icon from "@mdi/react"
 
 export default function Item({ item }: { item: Permission }) {
   const dispatch = useAppDispatch()

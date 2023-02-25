@@ -1,8 +1,8 @@
-import Icon from "@mdi/react";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { mdiChevronDoubleRight } from "@mdi/js";
-import { toggle } from "../../store/layout";
-import classNames from "classnames";
+import { useAppDispatch, useAppSelector } from "../../hooks"
+import { mdiChevronDoubleRight } from "@mdi/js"
+import { toggle } from "../../store/layout"
+import Icon from "@mdi/react"
+import classNames from "classnames"
 
 export default function SidebarToggler() {
   const { sidebar } = useAppSelector(state => state.layout.open)

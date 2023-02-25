@@ -1,17 +1,17 @@
-import classNames from "classnames";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import Button from "../../../Components/Button";
-import Icon from "@mdi/react";
-import { mdiCheck } from "@mdi/js";
-import Tree from "./Tree";
-import { update } from "../../../store/translation";
-import React from "react";
+import { useAppDispatch, useAppSelector } from "../../../hooks"
+import { mdiCheck } from "@mdi/js"
+import { update } from "../../../store/translation"
+import { FormEvent } from "react"
+import Button from "../../../Components/Button"
+import classNames from "classnames"
+import Icon from "@mdi/react"
+import Tree from "./Tree"
 
 export default function Configuration() {
   const dispatch = useAppDispatch()
   const { lists, current } = useAppSelector(state => state.translation)
 
-  const submit = (e: React.FormEvent) => {
+  const submit = (e: FormEvent) => {
     e.preventDefault()
     dispatch(update())
   }

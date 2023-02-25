@@ -1,8 +1,8 @@
-import classNames from "classnames";
-import FloatingInput2 from "../../../Components/FloatingInput2";
-import { Recursive } from "../../../_interfaces/translation";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { change } from "../../../store/translation";
+import { Recursive } from "../../../_interfaces/translation"
+import { useAppDispatch, useAppSelector } from "../../../hooks"
+import { change } from "../../../store/translation"
+import classNames from "classnames"
+import FloatingInput2 from "../../../Components/FloatingInput2"
 
 export function ValueString(props: { name: string, value: string, parent: string[] }) {
   const dispatch = useAppDispatch()

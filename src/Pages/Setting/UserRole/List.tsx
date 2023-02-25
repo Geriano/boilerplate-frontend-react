@@ -1,11 +1,11 @@
 import { Link, useParams } from "react-router-dom"
-import FloatingInput2 from "../../../Components/FloatingInput2"
 import { useAppDispatch, useAppSelector } from "../../../hooks"
-import classNames from "classnames"
 import { next, previous, search } from "../../../store/user"
-import Button from "../../../Components/Button"
-import Icon from "@mdi/react"
 import { mdiChevronLeft, mdiChevronRight } from "@mdi/js"
+import Button from "../../../Components/Button"
+import classNames from "classnames"
+import FloatingInput2 from "../../../Components/FloatingInput2"
+import Icon from "@mdi/react"
 
 export default function List() {
   const dispatch = useAppDispatch()

@@ -1,5 +1,5 @@
-import axios from "axios"
 import { route } from "./_backend/routes"
+import axios from "axios"
 
 axios.defaults.xsrfCookieName = 'X-CSRF-TOKEN'
 axios.defaults.xsrfHeaderName = 'X-CSRF-TOKEN'

@@ -1,7 +1,7 @@
-import axios from "axios"
 import { route } from "../_backend/routes"
 import { LoginForm, LoginSuccess, LogoutSuccess, RegisterForm, RegisterSuccess, User } from '../_interfaces/auth'
 import { SuccessResponse } from "../_interfaces/response"
+import axios from "axios"
 
 export const user = async () => {
   const { status, data: response } = await axios.post(route('auth.user')) as SuccessResponse<User>

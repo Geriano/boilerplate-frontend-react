@@ -1,8 +1,8 @@
-import Icon from "@mdi/react";
-import Button from "../../../Components/Button";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
-import { next, previous } from "../../../store/user";
+import { useAppDispatch, useAppSelector } from "../../../hooks"
+import { mdiChevronLeft, mdiChevronRight } from "@mdi/js"
+import { next, previous } from "../../../store/user"
+import Button from "../../../Components/Button"
+import Icon from "@mdi/react"
 
 export default function Links() {
   const dispatch = useAppDispatch()

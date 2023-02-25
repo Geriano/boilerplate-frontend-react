@@ -1,5 +1,5 @@
-import classNames from "classnames"
 import { useAppSelector } from "../../hooks"
+import classNames from "classnames"
 
 export function Title() {
   const APP_NAME = import.meta.env.VITE_APP_NAME

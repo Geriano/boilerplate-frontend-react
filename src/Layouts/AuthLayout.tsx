@@ -1,9 +1,9 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { relog } from "../store/auth";
-import Icon from "@mdi/react";
-import { mdiLoading } from "@mdi/js";
-import { useEffect } from "react";
+import { Navigate, Outlet } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "../hooks"
+import { relog } from "../store/auth"
+import { mdiLoading } from "@mdi/js"
+import { useEffect } from "react"
+import Icon from "@mdi/react"
 
 export function Loading() {
   return (

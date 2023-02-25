@@ -1,9 +1,9 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { Recursive, State } from "../_interfaces/translation"
 import { RootState } from "../store"
+import { AxiosError } from "axios"
 import translation from "../_services/translation"
 import * as toast from "./toast"
-import { AxiosError } from "axios"
 
 export const name = 'translation'
 export const initialState: State = {

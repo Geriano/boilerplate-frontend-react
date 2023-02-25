@@ -1,11 +1,11 @@
-import { mdiPlus } from "@mdi/js";
-import Button from "../../Components/Button";
-import Icon from "@mdi/react";
-import { useAppDispatch, useAppSelector, usePermission } from "../../hooks";
-import { useEffect } from "react";
-import { all, toggle } from "../../store/permission";
-import Form from "./Permission/Form";
-import Item from "./Permission/Item";
+import { mdiPlus } from "@mdi/js"
+import { useAppDispatch, useAppSelector, usePermission } from "../../hooks"
+import { useEffect } from "react"
+import { all, toggle } from "../../store/permission"
+import Button from "../../Components/Button"
+import Form from "./Permission/Form"
+import Icon from "@mdi/react"
+import Item from "./Permission/Item"
 
 export default function Permission() {
   const dispatch = useAppDispatch()

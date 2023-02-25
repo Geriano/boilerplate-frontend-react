@@ -1,10 +1,10 @@
 import { Navigate, useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../../hooks"
 import { toggleRole } from "../../../store/user"
-import Button from "../../../Components/Button"
-import Icon from "@mdi/react"
 import { mdiChevronLeft, mdiChevronRight } from "@mdi/js"
 import { next, previous } from "../../../store/role"
+import Button from "../../../Components/Button"
+import Icon from "@mdi/react"
 
 export default function Configuration() {
   const dispatch = useAppDispatch()

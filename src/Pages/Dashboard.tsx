@@ -1,6 +1,6 @@
-import { Card } from "flowbite-react";
-import IncomingRequest from "../Charts/IncomingRequest";
-import { useRole } from "../hooks";
+import { Card } from "flowbite-react"
+import { useRole } from "../hooks"
+import IncomingRequest from "../Charts/IncomingRequest"
 
 export default function Dashboard() {
   const role = useRole()

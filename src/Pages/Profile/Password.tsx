@@ -1,11 +1,11 @@
 import { FormEvent } from "react"
 import { useAppDispatch, useAppSelector } from "../../hooks"
 import { setPasswordForm, updatePassword } from "../../store/profile"
-import FloatingInput2 from "../../Components/FloatingInput2"
-import Button from "../../Components/Button"
-import Icon from "@mdi/react"
 import { mdiCheck, mdiLoading } from "@mdi/js"
 import { route } from "../../_backend/routes"
+import Button from "../../Components/Button"
+import FloatingInput2 from "../../Components/FloatingInput2"
+import Icon from "@mdi/react"
 
 export default function Password() {
   const dispatch = useAppDispatch()

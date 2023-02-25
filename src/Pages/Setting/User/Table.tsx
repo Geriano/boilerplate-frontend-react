@@ -1,8 +1,8 @@
-import Icon from "@mdi/react"
 import { useAppDispatch, useAppSelector } from "../../../hooks"
 import { mdiDelete, mdiPen } from "@mdi/js"
-import Button from "../../../Components/Button"
 import { destroy, edit } from "../../../store/user"
+import Button from "../../../Components/Button"
+import Icon from "@mdi/react"
 
 export default function Table() {
   const paginated = useAppSelector(state => state.user.paginated)

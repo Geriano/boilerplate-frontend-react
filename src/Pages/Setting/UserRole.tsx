@@ -1,15 +1,15 @@
 import { useEffect } from "react"
 import { useAppDispatch } from "../../hooks"
 import { paginate } from "../../store/user"
-import * as role from "../../store/role"
-import List from "./UserRole/List"
 import { Outlet } from "react-router-dom"
+import { limit } from "../../store/role"
+import List from "./UserRole/List"
 
 export default function UserRole() {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(role.limit(15))
+    dispatch(limit(15))
     dispatch(paginate())
   }, [])
 

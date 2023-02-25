@@ -1,11 +1,11 @@
 import { Modal } from "flowbite-react"
-import Button from "../../../Components/Button"
 import { useAppDispatch, useAppSelector } from "../../../hooks"
 import { CSSTransition } from "react-transition-group"
 import { FormEvent, useEffect, useRef } from "react"
 import { set, store, toggle, update } from "../../../store/user"
-import FloatingInput2 from "../../../Components/FloatingInput2"
 import { route } from "../../../_backend/routes"
+import Button from "../../../Components/Button"
+import FloatingInput2 from "../../../Components/FloatingInput2"
 
 export default function Form() {
   const dispatch = useAppDispatch()

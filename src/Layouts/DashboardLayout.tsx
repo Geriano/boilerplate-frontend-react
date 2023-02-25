@@ -12,7 +12,7 @@ export default function DashboardLayout() {
   const query = location.search
 
   if (!authenticated) {
-    const url = location.pathname.includes('?') ? location.pathname + query.replace(/^\?/, '&') : query
+    const url = location.pathname + (location.pathname.includes('?') ? query.replace(/^\?/, '&') : query)
     return <Navigate to={`/login?from=${url}`} />
   }
 

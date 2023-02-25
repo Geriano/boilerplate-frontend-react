@@ -5,6 +5,7 @@ import permission from "./store/permission"
 import role from "./store/role"
 import user from "./store/user"
 import translation from "./store/translation"
+import profile from "./store/profile"
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     role,
     user,
     translation,
+    profile,
   },
   middleware: middleware => middleware({
     serializableCheck: false,

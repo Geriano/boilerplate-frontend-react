@@ -28,6 +28,7 @@ import Translation from './Pages/Setting/Translation'
 import axios from 'axios'
 import { route } from './_backend/routes'
 import Dashboard from './Pages/Dashboard'
+import Profile from './Pages/Profile'
 
 Object.defineProperties(window, {
   axios: {
@@ -45,6 +46,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <>
           <Route path='/' element={<DashboardLayout />}>
             <Route path="/" element={<Dashboard />} />
+            <Route path='/profile' element={<Profile />} />
             <Route path='/setting' element={<Setting />}>
               <Route path='/setting' element={<Navigate to="/setting/general" />} />
               <Route path='/setting/general' element={<General />} />

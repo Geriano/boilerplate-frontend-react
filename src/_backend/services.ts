@@ -23,6 +23,14 @@ export const services = {
     path: '/forgot-password',
     params: [],
   },
+  'auth.update-profile-information': {
+    path: '/auth/user',
+    params: [],
+  },
+  'auth.update-password': {
+    path: '/auth/user',
+    params: [],
+  },
   'permission.all': {
     path: '/superuser/permission',
     params: [],

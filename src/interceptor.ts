@@ -12,6 +12,11 @@ axios.interceptors.request.use(async config => {
     const { token } = await response.json()
     config.headers.set(axios.defaults.xsrfHeaderName, token)
   }
+
+  if (config.url) {
+    const search = location.search
+    config.url = config.url.includes('?') ? config.url + search.replace(/\?/, '&') : config.url + search
+  }
   
   return config
 })

@@ -8,8 +8,8 @@ export default function Setting() {
   const permission = usePermission()
 
   return (
-    <div className="grid grid-cols-12 gap-4">
-      <div className="col-span-2">
+    <div className="grid grid-cols-12 gap-8">
+      <div className="col-span-3">
         <div className="flex flex-col space-y-2">
           {role.has(['superuser', 'dev']) && (
             <SettingDropdown actives={['/setting/general']} label="Setup">
@@ -39,7 +39,7 @@ export default function Setting() {
           )}
         </div>
       </div>
-      <div className="col-span-10" style={{
+      <div className="col-span-9" style={{
         minHeight: 'calc(100vh - 6rem)',
       }}>
         <Outlet />

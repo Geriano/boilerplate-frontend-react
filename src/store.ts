@@ -6,6 +6,7 @@ import role from "./store/role"
 import user from "./store/user"
 import translation from "./store/translation"
 import profile from "./store/profile"
+import toast from "./store/toast"
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     user,
     translation,
     profile,
+    toast,
   },
   middleware: middleware => middleware({
     serializableCheck: false,

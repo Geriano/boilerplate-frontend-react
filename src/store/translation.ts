@@ -2,6 +2,8 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { Recursive, State } from "../_interfaces/translation"
 import { RootState } from "../store"
 import translation from "../_services/translation"
+import * as toast from "./toast"
+import { AxiosError } from "axios"
 
 export const name = 'translation'
 export const initialState: State = {
@@ -30,7 +32,8 @@ export const languages = createAsyncThunk('translation/languages', async (_, api
 
     api.dispatch(slice.actions.languages(response))
   } catch (e) {
-    console.log(e)
+    const error = e as Error
+    api.dispatch(toast.error(error.message))
   } finally {
     api.dispatch(slice.actions.process(false))
   }
@@ -59,7 +62,8 @@ export const lists = createAsyncThunk('translation/list', async (language: strin
       await api.dispatch(tree())
     }
   } catch (e) {
-    console.log(e)
+    const error = e as Error
+    api.dispatch(toast.error(error.message))
   } finally {
     api.dispatch(slice.actions.process(false))
   }
@@ -79,7 +83,8 @@ export const tree = createAsyncThunk('translation/tree', async (_, api) => {
 
     api.dispatch(slice.actions.tree(response))
   } catch (e) {
-    console.log(e)
+    const error = e as Error
+    api.dispatch(toast.error(error.message))
   } finally {
     api.dispatch(slice.actions.process(false))
   }
@@ -107,7 +112,13 @@ export const update = createAsyncThunk('translation/update', async (_, api) => {
 
         api.dispatch(slice.actions.tree(response))
       } catch (e) {
-        console.log(e)
+        if (e instanceof AxiosError) {
+          const { data } = e.response!
+          api.dispatch(toast.error(data && data.message ? data.message : e.message))
+        } else {
+          const error = e as Error
+          api.dispatch(toast.error(error.message))
+        }
       }
     }, 200)
   ))

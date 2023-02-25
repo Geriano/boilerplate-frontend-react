@@ -3,6 +3,7 @@ import { State } from "../_interfaces/profile"
 import { RootState } from "../store"
 import { AxiosError } from "axios"
 import profile from "../_services/profile"
+import * as toast from "./toast"
 
 export const name = 'profile'
 export const initialState: State = {
@@ -46,7 +47,7 @@ export const updateProfileInformation = createAsyncThunk('profile/updateProfileI
     api.dispatch(process(true))
     const { response } = await profile.updateProfileInformation(form.profile)
 
-    console.log(response)
+    api.dispatch(toast.success(response.message))
   } catch (e) {
     if (e instanceof AxiosError) {
       const response = e.response!
@@ -65,9 +66,13 @@ export const updateProfileInformation = createAsyncThunk('profile/updateProfileI
             value: error.message,
           })
         ))
+      } else {
+        const data = response.data
+        api.dispatch(toast.error(data && data.message ? data.message : e.message))
       }
     } else {
-      throw e
+      const error = e as Error
+      api.dispatch(toast.error(error.message))
     }
   } finally {
     api.dispatch(process(false))
@@ -87,7 +92,7 @@ export const updatePassword = createAsyncThunk('profile/updatePassword', async (
     api.dispatch(process(true))
     const { response } = await profile.updatePassword(form.password)
 
-    console.log(response)
+    api.dispatch(toast.success(response.message))
   } catch (e) {
     if (e instanceof AxiosError) {
       const response = e.response!
@@ -106,9 +111,13 @@ export const updatePassword = createAsyncThunk('profile/updatePassword', async (
             value: error.message,
           })
         ))
+      } else {
+        const data = response.data
+        api.dispatch(toast.error(data && data.message ? data.message : e.message))
       }
     } else {
-      throw e
+      const error = e as Error
+      api.dispatch(toast.error(error.message))
     }
   } finally {
     api.dispatch(process(false))

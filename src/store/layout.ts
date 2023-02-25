@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { State } from "../_interfaces/layout"
 
 export const name = 'layout'
-export const defaultState: State = {
+export const initialState: State = {
   open: {
     sidebar: true,
     dropdown: false,
@@ -13,7 +13,7 @@ export const localStorageState = localStorage.getItem('layout')
 
 export const slice = createSlice({
   name,
-  initialState: localStorageState ? JSON.parse(localStorageState) : defaultState,
+  initialState: localStorageState ? JSON.parse(localStorageState) as State : initialState,
   reducers: {
     toggle(state: State, { payload }: PayloadAction<keyof State['open']>) {
       state.open[payload] = !state.open[payload]

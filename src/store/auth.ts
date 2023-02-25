@@ -3,6 +3,7 @@ import { LoginForm, LoginValidationError, State, User } from "../_interfaces/aut
 import axios, { AxiosError } from "axios"
 import auth from "../_services/auth"
 import { RootState } from "../store"
+import * as toast from "./toast"
 
 export const name = 'auth'
 export const initialState: State = {
@@ -58,7 +59,13 @@ export const relog = createAsyncThunk('auth/relog', async (_, api) => {
       if (e.response!.status === 401) {
         localStorage.removeItem('token')
         window.location.reload()
+      } else {
+        const { data } = e.response!
+        api.dispatch(toast.error(data && data.message ? data.message : e.message))
       }
+    } else {
+      const error = e as Error
+      api.dispatch(toast.error(error.message))
     }
   } finally {
     api.dispatch(process(false))
@@ -87,9 +94,13 @@ export const login = createAsyncThunk('auth/login', async (_, api) => {
           key: error.field,
           value: error.message,
         })))
+      } else {
+        const { data } = e.response!
+        api.dispatch(toast.error(data && data.message ? data.message : e.message))
       }
     } else {
-      throw e
+      const error = e as Error
+      api.dispatch(toast.error(error.message))
     }
   } finally {
     api.dispatch(process(false))
@@ -100,10 +111,11 @@ export const logout = createAsyncThunk('auth/logout', async (_, api) => {
   try {
     const { response } = await auth.logout()
 
-    console.log(response)
+    api.dispatch(toast.success(response.message))
   } catch (e) {
     if (e instanceof AxiosError === false) {
-      throw e
+      const error = e as Error
+      api.dispatch(toast.error(error.message))
     }
   } finally {
     api.dispatch(unauthenticate())

@@ -8,6 +8,7 @@ import { AxiosError } from "axios"
 import { ErrorResponse } from "../_interfaces/response"
 import Swal from "sweetalert2"
 import { Permission } from "../_interfaces/permission"
+import * as toast from "./toast"
 
 export const name = 'user'
 export const initialState: State = {
@@ -45,8 +46,18 @@ export const paginate = createAsyncThunk('user/paginate', async (_, api) => {
   timeout && clearTimeout(timeout)
   api.dispatch(slice.actions.timeout(
     setTimeout(async () => {
-      const { response } = await user.paginate(paginator)
-      api.dispatch(slice.actions.paginated(response))
+      try {
+        const { response } = await user.paginate(paginator)
+        api.dispatch(slice.actions.paginated(response))
+      } catch (e) {
+        if (e instanceof AxiosError) {
+          const { data } = e.response!
+          api.dispatch(toast.error(data && data.message ? data.message : e.message))
+        } else {
+          const error = e as Error
+          api.dispatch(toast.error(error.message))
+        }
+      }
     }, 200)
   ))
 })
@@ -109,13 +120,13 @@ export const store = createAsyncThunk('user/store', async (_, api) => {
     api.dispatch(process(true))
     const { response } = await user.store(form)
 
-    console.log(response)
+    api.dispatch(toast.success(response.message))
     api.dispatch(toggle(false))
     api.dispatch(clearError())
     api.dispatch(reset())
   } catch (e) {
     if (e instanceof AxiosError) {
-      const response = e.response! as ErrorResponse<unknown>
+      const response = e.response! as ErrorResponse<any>
 
       if (response.status === 422) {
         const data = response.data as ValidationErrorResponse
@@ -126,12 +137,13 @@ export const store = createAsyncThunk('user/store', async (_, api) => {
             value: error.message,
           }))
         })
-
       } else {
-        throw e
+        const data = response.data
+        api.dispatch(toast.error(data && data.message ? data.message : e.message))
       }
     } else {
-      throw e
+      const error = e as Error
+      api.dispatch(toast.error(error.message))
     }
   } finally {
     api.dispatch(process(false))
@@ -151,15 +163,13 @@ export const update = createAsyncThunk('user/update', async (_, api) => {
     api.dispatch(process(true))
     const { response } = await user.update(form.id!, form)
 
-    console.log(response)
+    api.dispatch(toast.success(response.message))
     api.dispatch(toggle(false))
     api.dispatch(clearError())
     api.dispatch(reset())
   } catch (e) {
     if (e instanceof AxiosError) {
-      const response = e.response! as ErrorResponse<unknown>
-
-      console.log(response)
+      const response = e.response! as ErrorResponse<any>
 
       if (response.status === 422) {
         const data = response.data as ValidationErrorResponse
@@ -171,10 +181,12 @@ export const update = createAsyncThunk('user/update', async (_, api) => {
           }))
         })
       } else {
-        throw e
+        const data = response.data
+        api.dispatch(toast.error(data && data.message ? data.message : e.message))
       }
     } else {
-      throw e
+      const error = e as Error
+      api.dispatch(toast.error(error.message))
     }
   } finally {
     api.dispatch(process(false))
@@ -205,11 +217,11 @@ export const destroy = createAsyncThunk('user/destroy', async (id: string, api) 
     if (isConfirmed) {
       const { response } = await user.destroy(id)
   
-      console.log(response)
+      api.dispatch(toast.success(response.message))
     }
   } catch (e) {
     if (e instanceof AxiosError) {
-      const response = e.response! as ErrorResponse<unknown>
+      const response = e.response! as ErrorResponse<any>
 
       if (response.status === 422) {
         const data = response.data as ValidationErrorResponse
@@ -221,10 +233,12 @@ export const destroy = createAsyncThunk('user/destroy', async (id: string, api) 
           }))
         })
       } else {
-        throw e
+        const data = response.data
+        api.dispatch(toast.error(data && data.message ? data.message : e.message))
       }
     } else {
-      throw e
+      const error = e as Error
+      api.dispatch(toast.error(error.message))
     }
   } finally {
     api.dispatch(process(false))
@@ -234,15 +248,38 @@ export const destroy = createAsyncThunk('user/destroy', async (id: string, api) 
 })
 
 export const togglePermission = createAsyncThunk('user/toggle-permission', async (payload: { user: User, permission: Permission }, api) => {
-  const { response } = await user.togglePermission(payload.user.id, payload.permission.id)
-  await api.dispatch(paginate())
-  console.log(response)
+  try {
+    const { response } = await user.togglePermission(payload.user.id, payload.permission.id)
+    api.dispatch(toast.success(response.message))
+  } catch (e) {
+    if (e instanceof AxiosError) {
+      const { data } = e.response!
+      api.dispatch(toast.success(data && data.message ? data.message : e.message))
+    } else {
+      const error = e as Error
+      api.dispatch(toast.error(error.message))
+    }
+  } finally {
+    await api.dispatch(paginate())
+  }
 })
 
 export const toggleRole = createAsyncThunk('user/toggle-role', async (payload: { user: User, role: Permission }, api) => {
-  const { response } = await user.toggleRole(payload.user.id, payload.role.id)
-  await api.dispatch(paginate())
-  console.log(response)
+  try {
+    const { response } = await user.toggleRole(payload.user.id, payload.role.id)
+
+    api.dispatch(toast.success(response.message))
+  } catch (e) {
+    if (e instanceof AxiosError) {
+      const { data } = e.response!
+      api.dispatch(toast.success(data && data.message ? data.message : e.message))
+    } else {
+      const error = e as Error
+      api.dispatch(toast.error(error.message))
+    }
+  } finally {
+    await api.dispatch(paginate())
+  }
 })
 
 export const slice = createSlice({

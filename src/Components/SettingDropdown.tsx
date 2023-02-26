@@ -22,9 +22,12 @@ export default function SettingDropdown({ actives, children, label }: PropsWithC
   }
 
   return (
-    <div className="flex flex-col space-y-2">
-      <div className="flex flex-col space-y-2">
-        <a onClick={toggle} href="#" className="flex items-center justify-between">
+    <div className={classNames("flex flex-col space-y-2 bg-white rounded-md pt-4", {
+      'pb-4': active,
+      'pb-2': !active,
+    })}>
+      <div className="flex flex-col space-y-2 ">
+        <a onClick={toggle} href="#" className="flex items-center justify-between px-4">
           <p className={classNames("capitalize", {
             'font-medium': open,
           })}>{label}</p>

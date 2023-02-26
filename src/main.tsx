@@ -30,6 +30,7 @@ import UserRole from './Pages/Setting/UserRole'
 import Translation from './Pages/Setting/Translation'
 import Dashboard from './Pages/Dashboard'
 import Profile from './Pages/Profile'
+import Config from './Pages/Setting/Config'
 
 Object.defineProperties(window, {
   axios: {
@@ -49,8 +50,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <Route path="/" element={<Dashboard />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/setting' element={<Setting />}>
-              <Route path='/setting' element={<Navigate to="/setting/general" />} />
-              <Route path='/setting/general' element={<General />} />
+              <Route path='/setting' element={<Navigate to="/setting/config" />} />
+              <Route path='/setting/config' element={<Config />} />
               <Route path='/setting/translation' element={<Translation />} />
               <Route path='/setting/permission' element={<Permission />} />
               <Route path='/setting/role' element={<Role />}>

@@ -8,12 +8,12 @@ export default function Setting() {
   const permission = usePermission()
 
   return (
-    <div className="grid grid-cols-12 gap-8">
+    <div className="grid grid-cols-12 gap-4">
       <div className="col-span-3">
         <div className="flex flex-col space-y-2">
           {role.has(['superuser', 'dev']) && (
-            <SettingDropdown actives={['/setting/general']} label="Setup">
-              <SettingMenu to="/setting/general">General</SettingMenu>
+            <SettingDropdown actives={['/setting/config', '/setting/translation']} label="Setup">
+              <SettingMenu to="/setting/config">Config</SettingMenu>
               <SettingMenu to="/setting/translation">Translation</SettingMenu>
             </SettingDropdown>
           )}

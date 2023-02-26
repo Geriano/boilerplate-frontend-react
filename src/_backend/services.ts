@@ -1,4 +1,8 @@
 export const services = {
+  'backend-config': {
+    path: '/_config',
+    params: [],
+  },
   'csrf': {
     path: '/csrf',
     params: [],

@@ -1,5 +1,7 @@
+import { mdiViewDashboard } from "@mdi/js"
 import { useAppSelector } from "../../hooks"
 import classNames from "classnames"
+import SidebarLink from "./SidebarLink"
 
 export function Title() {
   const APP_NAME = import.meta.env.VITE_APP_NAME
@@ -36,6 +38,9 @@ export default function Sidebar() {
       {sidebar && (
         <Title />
       )}
+      <div className="flex flex-col space-y-2 p-4">
+        <SidebarLink to="/" icon={mdiViewDashboard} text="Dashboard" />
+      </div>
     </div>
   )
 }

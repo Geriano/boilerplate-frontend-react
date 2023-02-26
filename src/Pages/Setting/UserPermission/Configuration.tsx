@@ -13,7 +13,7 @@ export default function Configuration() {
   }
 
   return (
-    <div className="col-span-8 flex flex-col bg-white rounded-md p-4">
+    <div className="col-span-8 flex flex-col bg-white dark:bg-gray-700 rounded-md p-4">
       <div className="flex items-center justify-between mb-4">
         <div className="font-medium">
           Permission for {user.name} (@{user.username})
@@ -26,7 +26,7 @@ export default function Configuration() {
             <input
               name={`permission:${permission.id}`}
               type="checkbox"
-              className="rounded-md cursor-pointer"
+              className="dark:bg-gray-700 dark:border-gray-800 rounded-md cursor-pointer"
               checked={user.permissions.find(p => p.key === permission.key) !== undefined}
               onChange={() => {
                 dispatch(togglePermission({

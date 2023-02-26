@@ -9,6 +9,7 @@ import Item from "./Permission/Item"
 
 export default function Permission() {
   const dispatch = useAppDispatch()
+  const theme = useAppSelector(state => state.layout.theme)
   const permission = usePermission()
   const permissions = useAppSelector(state => state.permission.permissions)
 
@@ -18,14 +19,14 @@ export default function Permission() {
 
   return (
     <>
-      <div className="h-full bg-white rounded-md shadow p-4">
+      <div className="h-full bg-white dark:bg-gray-700 rounded-md shadow p-4">
         <div className="flex items-center justify-between">
           <h3 className="font-medium capitalize">Permission</h3>
 
           {permission.has('create permission') && permission.has('configure permission key') && (
             <Button
               type="button"
-              color="light"
+              color={theme === 'dark' ? 'dark' : 'light'}
               title="Create"
               onClick={() => dispatch(toggle(true))}
             >

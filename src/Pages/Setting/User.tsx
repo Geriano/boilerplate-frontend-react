@@ -12,6 +12,7 @@ import Table from "./User/Table"
 
 export default function User() {
   const dispatch = useAppDispatch()
+  const theme = useAppSelector(state => state.layout.theme)
   const paginator = useAppSelector(state => state.user.paginator)
   
   useEffect(() => {
@@ -21,9 +22,9 @@ export default function User() {
 
   return (
     <>
-      <div className="h-full bg-white rounded-md shadow p-4">
+      <div className="h-full bg-white dark:bg-gray-700 rounded-md shadow p-4">
         <div className="flex items-center justify-between mb-4">
-          <Button onClick={() => dispatch(toggle(true))} color="light">
+          <Button onClick={() => dispatch(toggle(true))} color={theme === 'dark' ? 'dark' : 'light'}>
             <Icon path={mdiPlus} size={.5} />
             <p className="capitalize">Create</p>
           </Button>

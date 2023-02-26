@@ -9,6 +9,7 @@ import Tree from "./Tree"
 
 export default function Configuration() {
   const dispatch = useAppDispatch()
+  const theme = useAppSelector(state => state.layout.theme)
   const { lists, current } = useAppSelector(state => state.translation)
 
   const submit = (e: FormEvent) => {
@@ -17,9 +18,9 @@ export default function Configuration() {
   }
 
   return (
-    <form onSubmit={submit} className="col-span-8 bg-white rounded-md">
+    <form onSubmit={submit} className="col-span-8 bg-white dark:bg-gray-700 rounded-md">
       <div className="grid grid-cols-12 rounded-md">
-        <div className="col-span-11 flex items-center overflow-x-auto w-full border-b">
+        <div className="col-span-11 flex items-center overflow-x-auto w-full border-b dark:border-gray-800">
           {lists.map(list => {
             return (
               <div 
@@ -35,9 +36,9 @@ export default function Configuration() {
           })}
         </div>
 
-        <div className="col-span-1 flex items-center justify-center px-4 py-2 border-b">
+        <div className="col-span-1 flex items-center justify-center px-4 py-2 border-b dark:border-gray-800">
           <Button
-            color="light"
+            color={theme === 'dark' ? 'dark' : 'light'}
             onClick={() => {
               dispatch(update())
             }}

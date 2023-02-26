@@ -10,7 +10,7 @@ export default function Item({ item }: { item: Permission }) {
   const permission = usePermission()
   
   return (
-    <div key={item.id} className="bg-gray-100 text-gray-700 text-sm rounded-md inline-block px-2 py-1 m-0.5 transition-all hover:scale-105">
+    <div key={item.id} className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 text-sm rounded-md inline-block px-2 py-1 m-0.5 transition-all hover:scale-105">
       <div className="flex items-center space-x-1">
         <p className="capitalize">{item.title}</p>
         

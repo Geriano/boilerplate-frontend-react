@@ -8,6 +8,7 @@ import Icon from "@mdi/react"
 
 export default function Configuration() {
   const dispatch = useAppDispatch()
+  const theme = useAppSelector(state => state.layout.theme)
   const { id } = useParams()
   const user = useAppSelector(state => state.user.paginated.data.find(user => user.id === id))
   const paginated = useAppSelector(state => state.role.paginated)
@@ -17,7 +18,7 @@ export default function Configuration() {
   }
 
   return (
-    <div className="col-span-8 flex flex-col justify-between bg-white rounded-md">
+    <div className="col-span-8 flex flex-col justify-between bg-white dark:bg-gray-700 rounded-md">
       <div className="flex flex-col p-4">
         <div className="flex items-center justify-between mb-4">
           <div className="font-medium">
@@ -31,7 +32,7 @@ export default function Configuration() {
               <input
                 name={`role:${role.id}`}
                 type="checkbox"
-                className="rounded-md cursor-pointer"
+                className="dark:bg-gray-700 dark:border-gray-800 rounded-md cursor-pointer"
                 checked={user.roles.find(r => r.key === role.key) !== undefined}
                 onChange={() => {
                   dispatch(toggleRole({
@@ -45,15 +46,15 @@ export default function Configuration() {
         })}
       </div>
 
-      <div className="flex items-center justify-end border-t py-2 px-4 text-sm">
-        <div className="flex border rounded-md">
-          <Button onClick={() => dispatch(previous())} color="light" className="rounded-r-none px-1.5">
+      <div className="flex items-center justify-end border-t dark:border-gray-800 py-2 px-4 text-sm">
+        <div className="flex border dark:border-gray-700 rounded-md">
+          <Button onClick={() => dispatch(previous())} color={theme === 'dark' ? 'dark' : 'light'} className="rounded-r-none px-1.5">
             <Icon path={mdiChevronLeft} size={.5} />
           </Button>
           <div className="bg-primary px-2 py-1 font-medium text-white border border-primary-0">
             {paginated.meta.current_page}
           </div>
-          <Button onClick={() => dispatch(next())} color="light" className="rounded-l-none px-1.5">
+          <Button onClick={() => dispatch(next())} color={theme === 'dark' ? 'dark' : 'light'} className="rounded-l-none px-1.5">
             <Icon path={mdiChevronRight} size={.5} />
           </Button>
         </div>

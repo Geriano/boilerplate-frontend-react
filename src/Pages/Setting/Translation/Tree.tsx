@@ -8,7 +8,7 @@ export function ValueString(props: { name: string, value: string, parent: string
   const dispatch = useAppDispatch()
   const joined = props.parent.join('.')
   return (
-    <div className="border rounded-md text-sm my-1">
+    <div className="border dark:border-gray-800 rounded-md text-sm my-1">
       <FloatingInput2
         name={joined}
         label={props.name}
@@ -38,7 +38,7 @@ export function ValueObject(props: { tree: Recursive, parent: string[] }) {
 
         return (
           <div key={key} className="flex flex-col space-y-1">
-            {typeof value !== 'string' && <div className="w-fit bg-gray-100 py-1 px-3 rounded-md">{key}</div>}
+            {typeof value !== 'string' && <div className="w-fit bg-gray-100 dark:bg-gray-800 py-1 px-3 rounded-md">{key}</div>}
             <div className={classNames("flex flex-col space-y-1", {
               'pl-4': typeof value === 'string'
             })}>

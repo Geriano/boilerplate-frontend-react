@@ -10,19 +10,19 @@ export default function List() {
     <div className="col-span-4" style={{
       minHeight: `calc(100vh - 8rem)`
     }}>
-      <div className="flex flex-col bg-white rounded-md shadow pb-8">
+      <div className="flex flex-col bg-white dark:bg-gray-700 rounded-md shadow pb-8">
         <div className="flex items-center justify-between p-4">
           <h3 className="font-medium capitalize">Language</h3>
         </div>
 
-        <div className="border-y">
+        <div className="border-y dark:border-gray-800">
           {languages.map(language => {
             return (
               <div 
                 key={language} 
-                className={classNames("border-r-4 hover:border-primary-0 transition-all hover:bg-gray-100 uppercase px-4 py-2 hover:pl-8 text-sm hover:font-medium cursor-pointer", {
+                className={classNames("border-r-4 hover:border-primary-0 transition-all hover:bg-gray-100 dark:hover:bg-gray-800 uppercase px-4 py-2 hover:pl-8 text-sm hover:font-medium cursor-pointer", {
                   'border-transparent': current.language !== language,
-                  'bg-gray-100 border-primary-0 font-medium pl-8': current.language === language,
+                  'bg-gray-100 dark:bg-gray-800 border-primary-0 font-medium pl-8': current.language === language,
                 })}
                 onClick={e => {
                   dispatch(lists(language))

@@ -22,7 +22,7 @@ export default function SettingDropdown({ actives, children, label }: PropsWithC
   }
 
   return (
-    <div className={classNames("flex flex-col space-y-2 bg-white rounded-md pt-4", {
+    <div className={classNames("flex flex-col space-y-2 bg-white dark:bg-gray-700 rounded-md pt-4", {
       'pb-4': active,
       'pb-2': !active,
     })}>

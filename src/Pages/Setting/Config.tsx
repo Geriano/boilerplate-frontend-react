@@ -17,7 +17,7 @@ export const RenderObject = ({ values }: { values: Record<string, any> }) => {
   return (
     <div className="flex flex-col space-y-1 rounded-md">
       {Object.keys(values).map((key) => (
-        <div key={key} className="flex bg-gray-100 rounded-md transition-all hover:bg-gray-50">
+        <div key={key} className="flex bg-gray-100 dark:bg-gray-700 rounded-md transition-all hover:bg-gray-50 dark:hover:bg-gray-800 p-2">
           <p className="flex-none rounded-md p-2 mr-1">{key}</p>
           <div className="w-full flex items-center">
             <Render value={values[key]} />
@@ -64,17 +64,17 @@ export default function Config() {
   return (
     <div className="grid gap-4 grid-cols-12">
       <div className="col-span-4">
-        <div className="bg-white rounded-md pb-8">
+        <div className="bg-white dark:bg-gray-700 rounded-md pb-8">
           <h3 className="px-4 font-medium py-4">Config</h3>
-          <div className="border-y">
+          <div className="border-y dark:border-gray-800">
             {Object.keys(config).map(key => {
               return (
                 <div
                   key={key}
                   onClick={e => setActive(key)}
-                  className={classNames("flex items-center justify-between space-x-1 capitalize border-r-4 px-4 py-2 hover:bg-gray-100 hover:border-primary-0 hover:font-medium hover:pl-8 transition-all cursor-pointer text-sm", {
+                  className={classNames("flex items-center justify-between space-x-1 capitalize border-r-4 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-primary-0 hover:font-medium hover:pl-8 transition-all cursor-pointer text-sm", {
                     'border-transparent': active !== key,
-                    'bg-gray-100 border-primary-0 pl-8 font-medium': active === key,
+                    'bg-gray-100 dark:bg-gray-800 border-primary-0 pl-8 font-medium': active === key,
                   })}
                 >
                   {key}
@@ -85,7 +85,7 @@ export default function Config() {
         </div>
       </div>
 
-      <div className="col-span-8 bg-white rounded-md p-4" style={{
+      <div className="col-span-8 bg-white dark:bg-gray-700 rounded-md p-4" style={{
         minHeight: 'calc(100vh - 6rem)',
       }}>
         <Render value={config[active!]} />

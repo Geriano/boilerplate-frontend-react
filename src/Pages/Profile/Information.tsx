@@ -46,7 +46,7 @@ export default function Information() {
       </div>
 
       <form onSubmit={submit} action={route('auth.update-profile-information')} className="col-span-7">
-        <div className="bg-white rounded-md">
+        <div className="bg-white dark:bg-gray-700 rounded-md">
           <div className="p-8">
             <div className="max-w-md flex flex-col space-y-2 w-full">
               <FloatingInput2
@@ -99,8 +99,8 @@ export default function Information() {
             </div>
           </div>
 
-          <div className="flex items-center justify-end rounded-b-md bg-gray-100 p-4">
-            <Button color="dark" className="text-white">
+          <div className="flex items-center justify-end rounded-b-md bg-gray-100 dark:bg-gray-800 p-4">
+            <Button color="dark" className="text-white dark:bg-gray-900">
               {processing ? <Icon path={mdiLoading} /> : <Icon path={mdiCheck} size={.5} />}
               <p className="capitalize">
                 Update

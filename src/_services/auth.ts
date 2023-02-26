@@ -1,5 +1,5 @@
 import { route } from "../_backend/routes"
-import { LoginForm, LoginSuccess, LogoutSuccess, RegisterForm, RegisterSuccess, User } from '../_interfaces/auth'
+import { LoginForm, LoginSuccess, LogoutSuccess, RegisterForm, RegisterSuccess, User, VerifySuccess } from '../_interfaces/auth'
 import { SuccessResponse } from "../_interfaces/response"
 import axios from "axios"
 
@@ -22,11 +22,18 @@ export const logout = async () => {
 }
 
 export const register = async (form: RegisterForm) => {
-  const { status, data: response } = await axios.post(route('auth.register')) as RegisterSuccess
+  const next = import.meta.env.VITE_APP_URL
+  const { status, data: response } = await axios.post(route('auth.register', { next }), form) as RegisterSuccess
+
+  return { status, response }
+}
+
+export const verify = async (token: string) => {
+  const { status, data: response } = await axios.get(route('auth.verify')) as VerifySuccess
 
   return { status, response }
 }
 
 export default {
-  user, login, logout, register,
+  user, login, logout, register, verify,
 }

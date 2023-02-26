@@ -31,6 +31,8 @@ import Translation from './Pages/Setting/Translation'
 import Dashboard from './Pages/Dashboard'
 import Profile from './Pages/Profile'
 import Config from './Pages/Setting/Config'
+import Register from './Pages/Auth/Register'
+import Verify from './Pages/Auth/Verify'
 
 Object.defineProperties(window, {
   axios: {
@@ -71,6 +73,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           </Route>
           <Route path='/' element={<AuthLayout />}>
             <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/verify' element={<Verify />} />
           </Route>
         </>
       ))} />

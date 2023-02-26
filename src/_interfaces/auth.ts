@@ -23,13 +23,7 @@ export interface State {
   user: User
   token: string
   processing: boolean
-  form: {
-    name: string
-    email: string
-    username: string
-    password: string
-    password_confirmation: string
-  }
+  form: RegisterForm
   errors: {
     [key in keyof State['form']]: string
   }
@@ -62,6 +56,10 @@ export type LogoutSuccess = SuccessResponse<{
 }>
 
 export type RegisterSuccess = SuccessResponse<{
+  message: string
+}>
+
+export type VerifySuccess = SuccessResponse<{
   message: string
 }>
 

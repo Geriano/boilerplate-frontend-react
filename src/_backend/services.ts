@@ -23,6 +23,10 @@ export const services = {
     path: '/register',
     params: [],
   },
+  'auth.verify': {
+    path: '/verify',
+    params: [],
+  },
   'auth.forgot-password': {
     path: '/forgot-password',
     params: [],

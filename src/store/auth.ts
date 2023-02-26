@@ -1,5 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { LoginForm, LoginValidationError, State, User } from "../_interfaces/auth"
+import { LoginForm, LoginValidationError, RegisterForm, State, User } from "../_interfaces/auth"
 import { RootState } from "../store"
 import axios, { AxiosError } from "axios"
 import auth from "../_services/auth"
@@ -104,6 +104,67 @@ export const login = createAsyncThunk('auth/login', async (_, api) => {
     }
   } finally {
     api.dispatch(process(false))
+  }
+})
+
+export const register = createAsyncThunk('auth/register', async (_, api) => {
+  const state = api.getState() as RootState
+  const form = state.auth.form as RegisterForm
+
+  if (state.auth.processing) {
+    return
+  }
+ 
+  try {
+    api.dispatch(clearError())
+    api.dispatch(process(true))
+    const { response } = await auth.register(form)
+    api.dispatch(toast.success(response.message))
+  } catch (e) {
+    if (e instanceof AxiosError) {
+      if (e.response!.status === 422) {
+        const { data: response } = e.response! as LoginValidationError
+
+        response.errors.forEach(error => api.dispatch(setError({
+          key: error.field,
+          value: error.message,
+        })))
+      } else {
+        const { data } = e.response!
+        api.dispatch(toast.error(data && data.message ? data.message : e.message))
+      }
+    } else {
+      const error = e as Error
+      api.dispatch(toast.error(error.message))
+    }
+  } finally {
+    api.dispatch(process(false))
+    api.dispatch(reset())
+  }
+})
+
+export const verify = createAsyncThunk('auth/verify', async (token: string, api) => {
+  const state = api.getState() as RootState
+  const { processing } = state.auth
+
+  if (processing) {
+    return
+  }
+
+  try {
+    api.dispatch(process(true))
+    const { response } = await auth.verify(token)
+    api.dispatch(toast.success(response.message))
+    
+    setTimeout(() => window.open(import.meta.env.VITE_APP_URL, '_self'), 1000)
+
+    return true
+  } catch (e) {
+    const error = e as Error
+    api.dispatch(toast.error(error.message))
+    api.dispatch(process(false))
+
+    return false
   }
 })
 

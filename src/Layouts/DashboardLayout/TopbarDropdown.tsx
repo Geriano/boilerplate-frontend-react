@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "../../hooks"
+import { useAppDispatch, useAppSelector, useRole } from "../../hooks"
 import { mdiAccount, mdiCog, mdiLogout, mdiMenuDown } from "@mdi/js"
 import { toggle } from "../../store/layout"
 import { Link } from "react-router-dom"
@@ -9,6 +9,7 @@ import TopbarColorPicker from "./TopbarColorPicker"
 
 export default function TopbarDropdown() {
   const dispatch = useAppDispatch()
+  const role = useRole()
   const { dropdown } = useAppSelector(state => state.layout.open)
   const active = useAppSelector(state => state.layout.theme)
 
@@ -35,12 +36,14 @@ export default function TopbarDropdown() {
             <p className="capitalize font-medium">profile</p>
           </Link>
         </div>
-        <div onClick={close} className={classNames("px-2 transition-all duration-300 hover:bg-gray-50", { 'hover:bg-gray-900': active === 'dark' })}>
-          <Link to="/setting" className={classNames("flex items-center space-x-2 border-b px-4 py-2", { 'border-gray-900': active === 'dark' })} title="Setting">
-            <Icon path={mdiCog} size={.75} />
-            <p className="capitalize font-medium">setting</p>
-          </Link>
-        </div>
+        {role.has(['superuser', 'dev']) && (
+          <div onClick={close} className={classNames("px-2 transition-all duration-300 hover:bg-gray-50", { 'hover:bg-gray-900': active === 'dark' })}>
+            <Link to="/setting" className={classNames("flex items-center space-x-2 border-b px-4 py-2", { 'border-gray-900': active === 'dark' })} title="Web Setting">
+              <Icon path={mdiCog} size={.75} />
+              <p className="capitalize font-medium">web setting</p>
+            </Link>
+          </div>
+        )}
         <div onClick={close} className={classNames("px-2 transition-all duration-300 hover:bg-gray-50 border-b", { 'border-gray-900 hover:bg-gray-900': active === 'dark' })}>
           <button onClick={e => dispatch(logout())} type="button" className="flex items-center space-x-2 px-4 py-2" title="Logout">
             <Icon path={mdiLogout} size={.75} />

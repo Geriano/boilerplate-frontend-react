@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 import { route } from "../../_backend/routes"
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import classNames from "classnames"
+import { useAppDispatch, useRole } from "../../hooks"
+import { Navigate } from "react-router-dom"
+import * as toast from "../../store/toast"
 
 type ConfigType = Record<string, Record<string, any> | any>
 
@@ -49,17 +52,35 @@ export const Render = ({ value }: { value: any }) => {
 }
 
 export default function Config() {
+  const dispatch = useAppDispatch()
+  const roles = useRole()
   const [config, setConfig] = useState({} as ConfigType)
   const [active, setActive] = useState(null as string|null)
 
   useEffect(() => {
-    axios.get(route('backend-config'))
-      .then(response => response.data as ConfigType)
-      .then(data => {
-        setActive(Object.keys(data).shift()!)
-        setConfig(data)
-      })
+    if (roles.has(['superuser', 'dev'])) {
+      axios.get(route('backend-config'))
+        .then(response => response.data as ConfigType)
+        .then(data => {
+          setActive(Object.keys(data).shift()!)
+          setConfig(data)
+        })
+        .catch(e => {
+          if (e instanceof AxiosError) {
+            const { data } = e.response!
+
+            dispatch(toast.error(data && data.message ? data.message : e.message))
+          } else {
+            const error = e as Error
+            dispatch(toast.error(error.message))
+          }
+        })
+    }
   }, [])
+
+  if (!roles.has(['superuser', 'dev'])) {
+    return <Navigate to="/" />
+  }
 
   return (
     <div className="grid gap-4 md:grid-cols-12">

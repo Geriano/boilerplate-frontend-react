@@ -41,6 +41,12 @@ export const forgotPassword = async (email: string) => {
   return { status, response }
 }
 
+export const resetPassword = async (form: RegisterForm) => {
+  const { status, data: response } = await axios.put(route('auth.reset'), form) as VerifySuccess
+
+  return { status, response }
+}
+
 export default {
-  user, login, logout, register, verify, forgotPassword,
+  user, login, logout, register, verify, forgotPassword, resetPassword,
 }

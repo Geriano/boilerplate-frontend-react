@@ -34,6 +34,7 @@ import Config from './Pages/Setting/Config'
 import Register from './Pages/Auth/Register'
 import Verify from './Pages/Auth/Verify'
 import RequestForgotPassword from './Pages/Auth/RequestForgotPassword'
+import Reset from './Pages/Auth/Reset'
 
 Object.defineProperties(window, {
   axios: {
@@ -76,6 +77,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/verify' element={<Verify />} />
+            <Route path='/reset' element={<Reset />} />
             <Route path='/request-reset-password' element={<RequestForgotPassword />} />
           </Route>
         </>

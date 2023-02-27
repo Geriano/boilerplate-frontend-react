@@ -27,6 +27,10 @@ export const services = {
     path: '/verify',
     params: [],
   },
+  'auth.reset': {
+    path: '/forgot-password',
+    params: [],
+  },
   'auth.forgot-password': {
     path: '/forgot-password',
     params: [],

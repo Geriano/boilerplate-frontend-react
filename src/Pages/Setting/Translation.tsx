@@ -13,7 +13,7 @@ export default function Translation() {
   }, [])
 
   return (
-    <div className="grid gap-4 grid-cols-12">
+    <div className="grid gap-4 md:grid-cols-12">
       <List />
       {language && (
         <Configuration />

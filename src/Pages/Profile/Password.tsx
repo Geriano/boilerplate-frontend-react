@@ -21,13 +21,13 @@ export default function Password() {
 
   return (
     <>
-      <div className="col-span-5">
+      <div className="md:col-span-5">
         <h1 className="text-xl font-semibold">
           Password
         </h1>
       </div>
 
-      <form onSubmit={submit} action={route('auth.update-profile-information')} className="col-span-7">
+      <form onSubmit={submit} action={route('auth.update-profile-information')} className="md:col-span-7">
         <div className="bg-white dark:bg-gray-700 rounded-md">
           <div className="p-8">
             <div className="max-w-md flex flex-col space-y-2 w-full">

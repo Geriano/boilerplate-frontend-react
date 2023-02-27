@@ -13,7 +13,7 @@ export default function Configuration() {
   }
 
   return (
-    <div className="col-span-8 flex flex-col bg-white dark:bg-gray-700 rounded-md p-4">
+    <div className="md:col-span-8 flex flex-col bg-white dark:bg-gray-700 rounded-md p-4">
       <div className="flex items-center justify-between mb-4">
         <div className="font-medium">
           Permission for {user.name} (@{user.username})

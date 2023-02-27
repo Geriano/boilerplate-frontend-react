@@ -62,8 +62,8 @@ export default function Config() {
   }, [])
 
   return (
-    <div className="grid gap-4 grid-cols-12">
-      <div className="col-span-4">
+    <div className="grid gap-4 md:grid-cols-12">
+      <div className="md:col-span-4">
         <div className="bg-white dark:bg-gray-700 rounded-md pb-8">
           <h3 className="px-4 font-medium py-4">Config</h3>
           <div className="border-y dark:border-gray-800">
@@ -85,7 +85,7 @@ export default function Config() {
         </div>
       </div>
 
-      <div className="col-span-8 bg-white dark:bg-gray-700 rounded-md p-4" style={{
+      <div className="md:col-span-8 bg-white dark:bg-gray-700 rounded-md p-4" style={{
         minHeight: 'calc(100vh - 6rem)',
       }}>
         <Render value={config[active!]} />

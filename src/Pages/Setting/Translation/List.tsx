@@ -7,9 +7,7 @@ export default function List() {
   const { languages, current } = useAppSelector(state => state.translation)
 
   return (
-    <div className="col-span-4" style={{
-      minHeight: `calc(100vh - 8rem)`
-    }}>
+    <div className="md:col-span-4">
       <div className="flex flex-col bg-white dark:bg-gray-700 rounded-md shadow pb-8">
         <div className="flex items-center justify-between p-4">
           <h3 className="font-medium capitalize">Language</h3>

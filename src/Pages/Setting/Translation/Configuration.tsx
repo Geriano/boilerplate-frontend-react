@@ -18,7 +18,7 @@ export default function Configuration() {
   }
 
   return (
-    <form onSubmit={submit} className="col-span-8 bg-white dark:bg-gray-700 rounded-md">
+    <form onSubmit={submit} className="md:col-span-8 bg-white dark:bg-gray-700 rounded-md">
       <div className="grid grid-cols-12 rounded-md">
         <div className="col-span-11 flex items-center overflow-x-auto w-full border-b dark:border-gray-800">
           {lists.map(list => {

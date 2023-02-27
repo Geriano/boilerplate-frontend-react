@@ -14,9 +14,7 @@ export default function List() {
   const paginated = useAppSelector(state => state.role.paginated)
 
   return (
-    <div className="col-span-4 overflow-y-scroll" style={{
-      minHeight: 'calc(100vh - 8rem)'
-    }}>
+    <div className="md:col-span-4 overflow-y-scroll">
       <div className="flex flex-col bg-white dark:bg-gray-700 rounded-md shadow py-4">
         <div className="flex items-center justify-between pb-4 px-4">
           <h3 className="font-medium">Role list</h3>

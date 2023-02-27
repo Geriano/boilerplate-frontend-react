@@ -21,36 +21,35 @@ export default function User() {
   }, [])
 
   return (
-    <>
-      <div className="h-full bg-white dark:bg-gray-700 rounded-md shadow p-4">
-        <div className="flex items-center justify-between mb-4">
-          <Button onClick={() => dispatch(toggle(true))} color={theme === 'dark' ? 'dark' : 'light'}>
-            <Icon path={mdiPlus} size={.5} />
-            <p className="capitalize">Create</p>
-          </Button>
+    <div className="h-full bg-white dark:bg-gray-700 rounded-md shadow p-4">
+      <div className="flex flex-col md:flex-row items-end md:items-center space-y-2 md:space-y-0 justify-between mb-4">
+        <Button onClick={() => dispatch(toggle(true))} color={theme === 'dark' ? 'dark' : 'light'}>
+          <Icon path={mdiPlus} size={.5} />
+          <p className="capitalize">Create</p>
+        </Button>
 
-          <div className="max-w-xs w-full">
-            <FloatingInput2
-              padding="sm"
-              name="search"
-              type="text"
-              label="Search"
-              className="pt-0 pb-0"
-              value={paginator.search}
-              onChange={e => {
-                const target = e.target as HTMLInputElement
+        <div className="md:max-w-xs w-full">
+          <FloatingInput2
+            padding="sm"
+            name="search"
+            type="text"
+            label="Search"
+            className="pt-0 pb-0"
+            value={paginator.search}
+            onChange={e => {
+              const target = e.target as HTMLInputElement
 
-                dispatch(search(target.value))
-              }}
-            />
-          </div>
+              dispatch(search(target.value))
+            }}
+          />
         </div>
-
-        <Table />
-        <Links />
       </div>
 
+      <div className="overflow-auto">
+        <Table />
+      </div>
+      <Links />
       <Form />
-    </>
+    </div>
   )
 }

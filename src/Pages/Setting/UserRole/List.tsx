@@ -16,9 +16,7 @@ export default function List() {
   const { id } = useParams()
 
   return (
-    <div className="col-span-4 overflow-y-scroll" style={{
-      minHeight: 'calc(100vh - 8rem)',
-    }}>
+    <div className="md:col-span-4 overflow-y-scroll">
       <div className="flex flex-col bg-white dark:bg-gray-700 rounded-md shadow">
         <div className="flex items-center justify-between px-4 py-4">
           <h3 className="font-medium capitalize">User</h3>

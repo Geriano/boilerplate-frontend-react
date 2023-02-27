@@ -9,9 +9,7 @@ export default function Table() {
   const dispatch = useAppDispatch()
 
   return (
-    <div className="h-full rounded-md border dark:border-gray-800 overflow-scroll" style={{
-      maxHeight: 'calc(100% - 6rem)',
-    }}>
+    <div className="h-full rounded-md border dark:border-gray-800 overflow-auto">
       <table className="w-full border-collapse">
         <thead>
           <tr className="sticky top-0 border-b border-gray-400 dark:border-gray-800">

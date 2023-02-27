@@ -18,7 +18,7 @@ export default function Configuration() {
   }
 
   return (
-    <div className="col-span-8 flex flex-col justify-between bg-white dark:bg-gray-700 rounded-md">
+    <div className="md:col-span-8 flex flex-col justify-between bg-white dark:bg-gray-700 rounded-md">
       <div className="flex flex-col p-4">
         <div className="flex items-center justify-between mb-4">
           <div className="font-medium">

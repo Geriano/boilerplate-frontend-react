@@ -34,6 +34,13 @@ export const verify = async (token: string) => {
   return { status, response }
 }
 
+export const forgotPassword = async (email: string) => {
+  const next = import.meta.env.VITE_APP_URL
+  const { status, data: response } = await axios.post(route('auth.forgot-password', { next }), { email }) as VerifySuccess
+
+  return { status, response }
+}
+
 export default {
-  user, login, logout, register, verify,
+  user, login, logout, register, verify, forgotPassword,
 }

@@ -156,12 +156,85 @@ export const verify = createAsyncThunk('auth/verify', async (token: string, api)
     const { response } = await auth.verify(token)
     api.dispatch(toast.success(response.message))
     
-    setTimeout(() => window.open(import.meta.env.VITE_APP_URL, '_self'), 1000)
+    setTimeout(() => {
+      window.open(import.meta.env.VITE_APP_URL, '_self')
+      api.dispatch(process(false))
+    }, 1000)
 
     return true
   } catch (e) {
-    const error = e as Error
-    api.dispatch(toast.error(error.message))
+    if (e instanceof AxiosError) {
+      const response = e.response!
+
+      if (response.status === 422) {
+        const data = response.data as {
+          errors: {
+            field: keyof State['errors']
+            message: string
+          }[]
+        }
+
+        data.errors.forEach(error => {
+          api.dispatch(setError({
+            key: error.field,
+            value: error.message,
+          }))
+        })
+      } else {
+        api.dispatch(toast.error(response.data.message))
+      }
+    } else {
+      const error = e as Error
+      api.dispatch(toast.error(error.message))
+    }
+
+    api.dispatch(process(false))
+
+    return false
+  }
+})
+
+export const forgotPassword = createAsyncThunk('auth/forgotPassword', async (_, api) => {
+  const state = api.getState() as RootState
+  const { processing, form } = state.auth
+
+  if (processing) {
+    return
+  }
+
+  try {
+    api.dispatch(process(true))
+    const { response } = await auth.forgotPassword(form.email)
+    api.dispatch(toast.success(response.message))
+    api.dispatch(process(false))
+
+    return true
+  } catch (e) {
+    if (e instanceof AxiosError) {
+      const response = e.response!
+
+      if (response.status === 422) {
+        const data = response.data as {
+          errors: {
+            field: keyof State['errors']
+            message: string
+          }[]
+        }
+
+        data.errors.forEach(error => {
+          api.dispatch(setError({
+            key: error.field,
+            value: error.message,
+          }))
+        })
+      } else {
+        api.dispatch(toast.error(response.data.message))
+      }
+    } else {
+      const error = e as Error
+      api.dispatch(toast.error(error.message))
+    }
+
     api.dispatch(process(false))
 
     return false

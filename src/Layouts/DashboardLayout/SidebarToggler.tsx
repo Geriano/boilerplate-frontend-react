@@ -9,12 +9,10 @@ export default function SidebarToggler() {
   const dispatch = useAppDispatch()
 
   return (
-    <div className="flex-none w-14 h-14 flex items-center justify-center">
-      <button onClick={() => dispatch(toggle('sidebar'))} type="button" title="Toggle Sidebar" className={classNames("transition-all duration-300", {
-        "rotate-180": sidebar,
-      })}>
-        <Icon path={mdiChevronDoubleRight} size={.75} />
-      </button>
-    </div>
+    <button onClick={() => dispatch(toggle('sidebar'))} type="button" title="Toggle Sidebar" className={classNames("transition-all duration-300 py-2", {
+      "rotate-180": sidebar,
+    })}>
+      <Icon path={mdiChevronDoubleRight} size={.75} />
+    </button>
   )
 }

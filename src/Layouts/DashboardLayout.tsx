@@ -25,12 +25,12 @@ export default function DashboardLayout() {
   }
 
   return (
-    <div className="flex w-full h-full bg-gray-200 text-gray-700 dark:bg-gray-900 dark:text-gray-100 antialiased font-sans text-base transition-all duration-300">
+    <div className="relative flex w-full h-full bg-gray-200 text-gray-700 dark:bg-gray-900 dark:text-gray-100 antialiased font-sans text-base transition-all duration-300">
       <Sidebar />
       <div className="w-full h-full min-h-screen">
         <Topbar />
 
-        <main className="flex flex-col space-y-4 px-6 py-4 overflow-auto" style={{
+        <main className="flex flex-col space-y-4 px-6 py-4 overflow-auto pl-16 md:pl-6" style={{
           maxHeight: 'calc(100vh - 4rem)'
         }}>
           <Outlet />

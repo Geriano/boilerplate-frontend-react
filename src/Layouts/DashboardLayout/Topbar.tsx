@@ -11,7 +11,9 @@ export default function Topbar() {
       'bg-white text-gray-700': theme !== 'dark',
       'bg-gray-800 text-gray-100 border-gray-800': theme == 'dark',
     })}>
-      <SidebarToggler />
+      <div className="flex-none w-14 h-14 flex items-center justify-center">
+        <SidebarToggler />
+      </div>
       <div className="flex items-center justify-end w-full h-full p-2">
         <TopbarDropdown />
       </div>

@@ -2,14 +2,16 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { State } from "../_interfaces/profile"
 import { RootState } from "../store"
 import { AxiosError } from "axios"
-import profile from "../_services/profile"
 import * as toast from "./toast"
+import * as auth from './auth'
+import profile from "../_services/profile"
 
 export const name = 'profile'
 export const initialState: State = {
   processing: false,
   form: {
     profile: {
+      photo: null,
       name: '',
       username: '',
       email: '',
@@ -22,6 +24,7 @@ export const initialState: State = {
   },
   errors: {
     profile: {
+      photo: '',
       name: '',
       username: '',
       email: '',
@@ -47,7 +50,58 @@ export const updateProfileInformation = createAsyncThunk('profile/updateProfileI
     api.dispatch(process(true))
     const { response } = await profile.updateProfileInformation(form.profile)
 
+    await api.dispatch(auth.relog())
     api.dispatch(toast.success(response.message))
+  } catch (e) {
+    if (e instanceof AxiosError) {
+      const response = e.response!
+
+      if (response.status === 422) {
+        const data = response.data as {
+          errors: {
+            field: keyof State['errors']['profile']
+            message: string
+          }[]
+        }
+
+        data.errors.forEach(error => api.dispatch(
+          setProfileError({
+            key: error.field,
+            value: error.message,
+          })
+        ))
+      } else {
+        const data = response.data
+        api.dispatch(toast.error(data && data.message ? data.message : e.message))
+      }
+    } else {
+      const error = e as Error
+      api.dispatch(toast.error(error.message))
+    }
+  } finally {
+    api.dispatch(process(false))
+  }
+})
+
+export const removeProfilePhoto = createAsyncThunk('profile/removeProfilePhoto', async (_, api) => {
+  const state = api.getState() as RootState
+  const { processing, form } = state.profile
+
+  if (processing) {
+    return
+  }
+
+  try {
+    api.dispatch(clearError({ type: 'profile' }))
+    api.dispatch(process(true))
+    const { response } = await profile.removeProfilePhoto()
+
+    await api.dispatch(auth.relog())
+    api.dispatch(toast.success(response.message))
+    api.dispatch(setProfileForm({
+      key: 'photo',
+      value: null,
+    }))
   } catch (e) {
     if (e instanceof AxiosError) {
       const response = e.response!

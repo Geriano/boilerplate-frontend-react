@@ -5,6 +5,7 @@ import { Role } from "./role"
 
 export interface User {
   id: string
+  profile_photo_path: string|null
   name: string
   email: string
   username: string
@@ -18,6 +19,7 @@ export interface User {
 
 export interface Form {
   id: string
+  photo: File|null
   name: string
   email: string
   username: string

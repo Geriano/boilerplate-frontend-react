@@ -10,6 +10,7 @@ export const initialState: State = {
   authenticated: false,
   user: {
     id: '',
+    profile_photo_path: '',
     name: '',
     username: '',
     email: '',
@@ -352,9 +353,12 @@ export const slice = createSlice({
         state.errors = initialState.errors
       }
     },
+    removeProfilePhoto(state: State) {
+      state.user.profile_photo_path = null
+    },
   },
 })
 
-export const { process, authenticate, unauthenticate, set, reset, setError, clearError } = slice.actions
+export const { process, authenticate, unauthenticate, set, reset, setError, clearError, removeProfilePhoto } = slice.actions
 
 export default slice.reducer

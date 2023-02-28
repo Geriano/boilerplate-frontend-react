@@ -1,6 +1,7 @@
 import { SuccessResponse } from "./response"
 
 export interface UpdateProfileInformationForm {
+  photo: File|null
   name: string
   username: string
   email: string

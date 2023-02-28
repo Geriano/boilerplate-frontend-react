@@ -19,6 +19,7 @@ export const initialState: State = {
   paginated: createInitialPaginatedState<User>(),
   form: {
     id: '',
+    photo: null,
     name: '',
     email: '',
     username: '',
@@ -29,6 +30,7 @@ export const initialState: State = {
   },
   errors: {
     id: '',
+    photo: '',
     name: '',
     email: '',
     username: '',

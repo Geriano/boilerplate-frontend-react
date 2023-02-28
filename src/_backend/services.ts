@@ -1,4 +1,8 @@
 export const services = {
+  'static': {
+    path: '/{path}',
+    params: ['path'],
+  },
   'backend-config': {
     path: '/_config',
     params: [],
@@ -36,6 +40,10 @@ export const services = {
     params: [],
   },
   'auth.update-profile-information': {
+    path: '/auth/user',
+    params: [],
+  },
+  'auth.remove-profile-photo': {
     path: '/auth/user',
     params: [],
   },

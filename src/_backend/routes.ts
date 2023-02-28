@@ -31,3 +31,7 @@ export function route<T extends keyof Services>(route: T, params: Record<string,
 
   return `${hostname}/${path}` + (queries.toString() ? `?${queries.toString()}` : '')
 }
+
+export function assets(path: string) {
+  return route('static', { path })
+}

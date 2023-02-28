@@ -2,6 +2,7 @@ import { SuccessResponse, UnprocessableEntityResponse } from "./response"
 
 export interface User {
   id: string
+  profile_photo_path: string|null
   name: string
   email: string
   username: string

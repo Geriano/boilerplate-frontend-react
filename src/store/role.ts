@@ -293,6 +293,10 @@ export const slice = createSlice({
     toggle<T extends keyof State['open']>(state: State, { payload }: PayloadAction<{ type: T, open: boolean|undefined }>) {
       const { type, open } = payload
       state.open[type] = open ? open : ! state.open[type]
+
+      if (!state.open[type]) {
+        state.form = initialState.form
+      }
     },
     paginated(state: State, { payload }: PayloadAction<Paginated<Role>>) {
       state.paginated = payload

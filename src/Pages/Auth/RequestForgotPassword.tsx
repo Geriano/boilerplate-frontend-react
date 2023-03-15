@@ -48,10 +48,22 @@ export default function RequestForgotPassword() {
       <div className="flex items-center justify-between bg-gray-100 px-4 py-1 rounded-b-md">
         <div className="flex flex-col space-y-1">
           <p className="lowercase first-letter:capitalize text-sm">
-            <Link to="/login" className="text-primary-0">login</Link>
+            <Link
+              to="/login"
+              title="Login"
+              aria-label="Login"
+              className="text-primary-0"
+            >
+              login
+            </Link>
           </p>
         </div>
-        <Button type="submit" title="Send Reset Password Link" color="primary" className="text-white font-medium">
+        <Button
+          type="submit"
+          title="Send Reset Password Link"
+          color="primary"
+          className="text-white font-medium"
+        >
           {processing && (
             <div className="animate-spin">
               <Icon path={mdiLoading} size={.75} />

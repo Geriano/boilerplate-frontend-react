@@ -26,8 +26,8 @@ export default function Permission() {
           {permission.has('create permission') && permission.has('configure permission key') && (
             <Button
               type="button"
-              color={theme === 'dark' ? 'dark' : 'light'}
               title="Create"
+              color={theme === 'dark' ? 'dark' : 'light'}
               onClick={() => dispatch(toggle(true))}
             >
               <Icon path={mdiPlus} size={.5} />

@@ -106,7 +106,7 @@ export default function Register() {
       <div className="flex items-center justify-between bg-gray-100 px-4 py-1 rounded-b-md">
         <div className="flex flex-col space-y-1">
           <p className="lowercase first-letter:capitalize text-sm">
-            already have account? <Link to="/login" className="text-primary-0">login</Link>
+            already have account? <Link to="/login" className="text-primary-0" title="Login" aria-label="Login">login</Link>
           </p>
         </div>
         <Button type="submit" title="Register" color="primary" className="text-white font-medium">

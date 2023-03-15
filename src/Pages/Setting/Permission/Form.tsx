@@ -88,7 +88,12 @@ export default function Form() {
 
             <Modal.Footer className="py-1">
               <div className="flex items-center justify-end w-full">
-                <Button type="submit" color="primary" className="text-white">
+                <Button
+                  type="submit"
+                  title="Save"
+                  color="primary"
+                  className="text-white"
+                >
                   Save
                 </Button>
               </div>

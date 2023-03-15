@@ -27,11 +27,11 @@ export default function SettingDropdown({ actives, children, label }: PropsWithC
       'pb-2': !active,
     })}>
       <div className="flex flex-col space-y-2 ">
-        <a onClick={toggle} href="#" className="flex items-center justify-between px-4">
-          <p className={classNames("capitalize", {
+        <a onClick={toggle} href="#" title="Toggle" aria-label="Toggle" className="flex items-center justify-between px-4">
+          <p aria-label={label} className={classNames("capitalize", {
             'font-medium': open,
           })}>{label}</p>
-          <div className={classNames("transition-all duration-300", {
+          <div aria-label="Icon" className={classNames("transition-all duration-300", {
             'rotate-0': !open,
             'rotate-180': open,
           })}>

@@ -34,6 +34,7 @@ export default function Table() {
                 <td className="py-1 px-3 whitespace-nowrap text-center">{ user.created_at ? new Date(user.created_at).toLocaleString() : '-' }</td>
                 <td className="py-1 px-3 whitespace-nowrap text-center">
                   <Button
+                    title="Edit"
                     color="primary"
                     className="pl-1.5 pr-1.5 text-white mr-1"
                     onClick={() => {
@@ -44,6 +45,7 @@ export default function Table() {
                   </Button>
 
                   <Button
+                    title="Delete"
                     color="danger"
                     className="pl-1.5 pr-1.5 text-white"
                     onClick={() => {

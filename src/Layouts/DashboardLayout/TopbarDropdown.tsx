@@ -31,14 +31,14 @@ export default function TopbarDropdown() {
         'bg-gray-800 text-gray-100 border-gray-900': active == 'dark',
       })}>
         <div onClick={close} className={classNames("px-2 transition-all duration-300 hover:bg-gray-50", { 'hover:bg-gray-900': active === 'dark' })}>
-          <Link to="/profile" className={classNames("flex items-center space-x-2 border-b px-4 py-2", { 'border-gray-900': active === 'dark' })} title="Profile">
+          <Link to="/profile" className={classNames("flex items-center space-x-2 border-b px-4 py-2", { 'border-gray-900': active === 'dark' })} title="Profile" aria-label="Profile">
             <Icon path={mdiAccount} size={.75} />
             <p className="capitalize font-medium">profile</p>
           </Link>
         </div>
         {role.has(['superuser', 'dev']) && (
           <div onClick={close} className={classNames("px-2 transition-all duration-300 hover:bg-gray-50", { 'hover:bg-gray-900': active === 'dark' })}>
-            <Link to="/setting" className={classNames("flex items-center space-x-2 border-b px-4 py-2", { 'border-gray-900': active === 'dark' })} title="Web Setting">
+            <Link to="/setting" className={classNames("flex items-center space-x-2 border-b px-4 py-2", { 'border-gray-900': active === 'dark' })} title="Web Setting" aria-label="Web Setting">
               <Icon path={mdiCog} size={.75} />
               <p className="capitalize font-medium">web setting</p>
             </Link>

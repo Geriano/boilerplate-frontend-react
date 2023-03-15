@@ -116,6 +116,8 @@ export default function Information() {
                 <img
                   src={photo ? URL.createObjectURL(photo) : assets(user.profile_photo_path!)}
                   alt={user.name}
+                  width="80"
+                  height="80"
                   className="w-20 h-20 border dark:border-gray-800 rounded-full"
                 />
                 ) : (
@@ -155,6 +157,7 @@ export default function Information() {
                 <Button
                   type="button"
                   color="primary"
+                  title="Change"
                   className={classNames("text-white", {
                     'rounded-r-none': user.profile_photo_path || photo,
                   })}
@@ -166,6 +169,7 @@ export default function Information() {
                   <Button
                     type="button"
                     color="danger"
+                    title="Remove"
                     className="text-white rounded-l-none"
                     onClick={remove}
                   >
@@ -177,7 +181,11 @@ export default function Information() {
           </div>
 
           <div className="flex items-center justify-end rounded-b-md bg-gray-100 dark:bg-gray-800 p-4">
-            <Button color="dark" className="text-white dark:bg-gray-900">
+            <Button
+              color="dark"
+              title="Update"
+              className="text-white dark:bg-gray-900"
+            >
               {processing ? <Icon path={mdiLoading} /> : <Icon path={mdiCheck} size={.5} />}
               <p className="capitalize">
                 Update

@@ -25,7 +25,10 @@ export default function Login() {
       >
         <div className="px-6 flex items-center space-x-4">
           <div className="flex items-center justify-center w-10 h-10 rounded-full border p-2 bg-primary-0 bg-opacity-20">
-            <Icon path={mdiAccount} size={1} className="text-primary-0" />
+            <Icon
+              path={mdiAccount} size={1}
+              className="text-primary-0"
+            />
           </div>
           <h3 className="text-xl capitalize font-semibold">Login</h3>
         </div>
@@ -49,7 +52,11 @@ export default function Login() {
             />
             {errors.username && <p className="text-sm text-danger-0 text-right">{errors.username}</p>}
             <div className="absolute right-0 flex items-center h-full rounded-r-md text-gray-500">
-              <Icon path={mdiAt} size={1} className="mr-4" />
+              <Icon
+                path={mdiAt}
+                size={1}
+                className="mr-4"
+              />
             </div>
           </div>
           <div className="relative flex flex-col space-y-1">
@@ -69,18 +76,33 @@ export default function Login() {
             />
             {errors.password && <p className="text-sm text-danger-0 text-right">{errors.password}</p>}
             <div className="absolute right-0 flex items-center h-full rounded-r-md text-gray-500">
-              <button onClick={() => setShow(!show)} type="button" className="mr-4">
+              <button
+                onClick={() => setShow(!show)}
+                type="button"
+                className="mr-4"
+                title={show ? 'hide' : 'show'}
+              >
                 <Icon path={show ? mdiEyeOffOutline : mdiEyeOutline} size={1} />
               </button>
             </div>
           </div>
-          <Link to="/request-reset-password" className="lowercase first-letter:capitalize text-sm text-right text-gray-500">
+          <Link
+            to="/request-reset-password"
+            className="lowercase first-letter:capitalize text-sm text-right text-gray-500"
+            title="Forgot Password"
+            aria-label="Forgot Password"
+          >
             forgot your password?
           </Link>
         </div>
 
         <div className="px-8 w-full">
-          <Button type="submit" title="Login" color="primary" className="text-white text-md font-medium w-full">
+          <Button
+            type="submit"
+            title="Login"
+            color="primary"
+            className="text-white text-md font-medium w-full"
+          >
             <div className="flex items-center justify-center w-full space-x-2">
               {processing && (
                 <div className="animate-spin">
@@ -94,22 +116,52 @@ export default function Login() {
           <div className="text-center text-sm text-gray-500 my-2">or</div>
           
           <div className="flex items-center space-x-2 justify-center">
-            <Button type="button" color="light" className="border" title="Google">
+            <Button
+              type="button"
+              color="light"
+              className="border"
+              title="Google"
+            >
               <Icon path={mdiGoogle} size={.6} />
             </Button>
-            <Button type="button" color="dark" className="border text-white" title="Github">
+            <Button
+              type="button"
+              color="dark"
+              className="border text-white"
+              title="Github"
+            >
               <Icon path={mdiGithub} size={.6} />
             </Button>
-            <Button type="button" color="warning" className="border text-white" title="Gitlab">
+            <Button
+              type="button"
+              color="warning"
+              className="border text-white"
+              title="Gitlab"
+            >
               <Icon path={mdiGitlab} size={.6} />
             </Button>
-            <Button type="button" color="primary" className="border text-white" title="Facebook">
+            <Button
+              type="button"
+              color="primary"
+              className="border text-white"
+              title="Facebook"
+            >
               <Icon path={mdiFacebook} size={.6} />
             </Button>
-            <Button type="button" color="info" className="border text-white" title="Twitter">
+            <Button
+              type="button"
+              color="info"
+              className="border text-white"
+              title="Twitter"
+            >
               <Icon path={mdiTwitter} size={.6} />
             </Button>
-            <Button type="button" color="primary" className="border text-white" title="Linkedin">
+            <Button
+              type="button"
+              color="primary"
+              className="border text-white"
+              title="Linkedin"
+            >
               <Icon path={mdiLinkedin} size={.6} />
             </Button>
           </div>
@@ -118,7 +170,7 @@ export default function Login() {
 
       <div className="flex flex-col space-y-1 mt-2">
         <p className="lowercase first-letter:capitalize text-sm text-center">
-          doens't have account? <Link to="/register" className="text-primary-0">register</Link>
+          doens't have account? <Link to="/register" className="text-primary-0" title="Register" aria-label="Register">register</Link>
         </p>
       </div>
     </div>

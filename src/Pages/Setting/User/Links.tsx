@@ -15,7 +15,7 @@ export default function Links() {
         <Button onClick={() => dispatch(previous())} color={theme === 'dark' ? 'dark' : 'light'} title="Previous">
           <Icon path={mdiChevronLeft} size={.5} />
         </Button>
-        <div className="bg-primary text-white px-2 py-1 font-medium" title="Current Page">
+        <div className="bg-primary text-white px-2 py-1 font-medium" title="Current Page" aria-label="Current Page">
           {meta.current_page}
         </div>
         <Button onClick={() => dispatch(next())} color={theme === 'dark' ? 'dark' : 'light'} title="Next">

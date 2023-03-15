@@ -48,13 +48,21 @@ export default function Configuration() {
 
       <div className="flex items-center justify-end border-t dark:border-gray-800 py-2 px-4 text-sm">
         <div className="flex border dark:border-gray-700 rounded-md">
-          <Button onClick={() => dispatch(previous())} color={theme === 'dark' ? 'dark' : 'light'} className="rounded-r-none px-1.5">
+          <Button
+            onClick={() => dispatch(previous())}
+            color={theme === 'dark' ? 'dark' : 'light'}
+            className="rounded-r-none px-1.5"
+          >
             <Icon path={mdiChevronLeft} size={.5} />
           </Button>
           <div className="bg-primary px-2 py-1 font-medium text-white border border-primary-0">
             {paginated.meta.current_page}
           </div>
-          <Button onClick={() => dispatch(next())} color={theme === 'dark' ? 'dark' : 'light'} className="rounded-l-none px-1.5">
+          <Button
+            onClick={() => dispatch(next())}
+            color={theme === 'dark' ? 'dark' : 'light'}
+            className="rounded-l-none px-1.5"
+          >
             <Icon path={mdiChevronRight} size={.5} />
           </Button>
         </div>

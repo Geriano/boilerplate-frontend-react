@@ -21,9 +21,11 @@ export default function FloatingInput2(props: PropsWithChildren<InputHTMLAttribu
           'px-0.5 pb-0.5 pt-1 text-xs': padding === 'xs',
         })} 
         placeholder=" " 
+        aria-label={props.label}
       />
       <label 
         htmlFor={props.name} 
+        aria-label={props.label}
         className={classNames("absolute rounded-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1", {
           'text-base': padding === undefined,
           'text-sm': padding === 'sm',

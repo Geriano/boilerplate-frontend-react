@@ -82,7 +82,11 @@ export default function Password() {
           </div>
 
           <div className="flex items-center justify-end rounded-b-md bg-gray-100 dark:bg-gray-800 p-4">
-            <Button color="dark" className="text-white dark:bg-gray-900">
+            <Button
+              color="dark"
+              title="Update"
+              className="text-white dark:bg-gray-900"
+            >
               {processing ? <Icon path={mdiLoading} /> : <Icon path={mdiCheck} size={.5} />}
               <p className="capitalize">
                 Update

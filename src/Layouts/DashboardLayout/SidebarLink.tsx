@@ -13,6 +13,7 @@ export default function SidebarLink({ icon, text, to }: { icon: string, text: st
     <Link
       to={to}
       title={text}
+      aria-label={text}
       className={classNames("flex items-center space-x-2 py-2 rounded-md text-gray-100 hover:text-gray-800 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-700 transition-all", {
         'bg-white text-gray-800 dark:bg-gray-700': active,
         'px-4': open,

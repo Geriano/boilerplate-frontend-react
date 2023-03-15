@@ -41,10 +41,16 @@ export default function List() {
         <div className="border-y dark:border-gray-800">
           {users.map(user => {
             return (
-              <Link key={user.id} to={`/setting/user/role/${user.id}`} className={classNames("flex items-center space-x-1 justify-between hover:bg-gray-100 dark:hover:bg-gray-800 border-r-4 hover:border-primary-0 py-2 px-4 hover:pl-6 hover:font-medium capitalize transition-all", {
-                'bg-gray-100 dark:bg-gray-800 pl-6 border-primary-0 font-medium': id === user.id,
-                'border-transparent': id !== user.id,
-              })}>
+              <Link
+                key={user.id}
+                to={`/setting/user/role/${user.id}`}
+                title={`Role for ${user.name}`}
+                aria-label={`Role for ${user.name}`}
+                className={classNames("flex items-center space-x-1 justify-between hover:bg-gray-100 dark:hover:bg-gray-800 border-r-4 hover:border-primary-0 py-2 px-4 hover:pl-6 hover:font-medium capitalize transition-all", {
+                  'bg-gray-100 dark:bg-gray-800 pl-6 border-primary-0 font-medium': id === user.id,
+                  'border-transparent': id !== user.id,
+                })}
+              >
                 <p>{user.name}</p>
               </Link>
             )
@@ -52,13 +58,23 @@ export default function List() {
         </div>
         <div className="flex items-center justify-end py-2 px-4 text-sm">
           <div className="flex border dark:border-gray-700 rounded-md">
-            <Button onClick={() => dispatch(previous())} color={theme === 'dark' ? 'dark' : 'light'} className="rounded-r-none px-1.5">
+            <Button
+              title="Previous"
+              onClick={() => dispatch(previous())}
+              color={theme === 'dark' ? 'dark' : 'light'}
+              className="rounded-r-none px-1.5"
+            >
               <Icon path={mdiChevronLeft} size={.5} />
             </Button>
             <div className="bg-primary px-2 py-1 font-medium text-white border border-primary-0">
               {paginated.meta.current_page}
             </div>
-            <Button onClick={() => dispatch(next())} color={theme === 'dark' ? 'dark' : 'light'} className="rounded-l-none px-1.5">
+            <Button
+              title="Next"
+              onClick={() => dispatch(next())}
+              color={theme === 'dark' ? 'dark' : 'light'}
+              className="rounded-l-none px-1.5"
+            >
               <Icon path={mdiChevronRight} size={.5} />
             </Button>
           </div>

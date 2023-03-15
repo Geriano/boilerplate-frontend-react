@@ -30,7 +30,7 @@ export default function DashboardLayout() {
       <div className="w-full h-full min-h-screen">
         <Topbar />
 
-        <main className="flex flex-col space-y-4 px-6 py-4 overflow-auto pl-16 md:pl-6" style={{
+        <main aria-label="Main content" className="flex flex-col space-y-4 px-6 py-4 overflow-auto pl-16 md:pl-6" style={{
           maxHeight: 'calc(100vh - 4rem)'
         }}>
           <Outlet />

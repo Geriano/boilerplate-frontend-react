@@ -23,7 +23,11 @@ export default function User() {
   return (
     <div className="h-full bg-white dark:bg-gray-700 rounded-md shadow p-4">
       <div className="flex flex-col md:flex-row items-end md:items-center space-y-2 md:space-y-0 justify-between mb-4">
-        <Button onClick={() => dispatch(toggle(true))} color={theme === 'dark' ? 'dark' : 'light'}>
+        <Button
+          title="Create"
+          onClick={() => dispatch(toggle(true))}
+          color={theme === 'dark' ? 'dark' : 'light'}
+        >
           <Icon path={mdiPlus} size={.5} />
           <p className="capitalize">Create</p>
         </Button>

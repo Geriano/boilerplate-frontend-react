@@ -39,11 +39,23 @@ export default function List() {
                 <p>{role.title}</p>
                 <div className="flex items-center space-x-1">
 
-                  <Button onClick={() => dispatch(edit(role))} type="button" color="primary" className="px-1 pt-1 pb-1 text-white rounded-t-full rounded-b-full" title="Edit">
+                  <Button
+                    onClick={() => dispatch(edit(role))}
+                    type="button"
+                    color="primary"
+                    className="px-1 pt-1 pb-1 text-white rounded-t-full rounded-b-full"
+                    title="Edit"
+                  >
                     <Icon path={mdiPen} size={.5} />
                   </Button>
 
-                  <Button onClick={() => dispatch(destroy(role.id))} type="button" color="danger" className="px-1 pt-1 pb-1 text-white rounded-t-full rounded-b-full" title="Delete">
+                  <Button
+                    onClick={() => dispatch(destroy(role.id))}
+                    type="button"
+                    color="danger"
+                    className="px-1 pt-1 pb-1 text-white rounded-t-full rounded-b-full"
+                    title="Delete"
+                  >
                     <Icon path={mdiDelete} size={.5} />
                   </Button>
                 </div>
@@ -57,6 +69,7 @@ export default function List() {
               onClick={() => dispatch(previous())}
               color={theme === 'dark' ? 'dark' : 'light'}
               className="rounded-r-none px-1.5"
+              title="Previous"
             >
               <Icon path={mdiChevronLeft} size={.5} />
             </Button>
@@ -67,6 +80,7 @@ export default function List() {
               onClick={() => dispatch(next())}
               color={theme === 'dark' ? 'dark' : 'light'}
               className="rounded-l-none px-1.5"
+              title="Next"
             >
               <Icon path={mdiChevronRight} size={.5} />
             </Button>

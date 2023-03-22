@@ -50,7 +50,6 @@ export default function Configuration() {
         <div className="flex border dark:border-gray-700 rounded-md">
           <Button
             onClick={() => dispatch(previous())}
-            color={theme === 'dark' ? 'dark' : 'light'}
             className="rounded-r-none px-1.5"
           >
             <Icon path={mdiChevronLeft} size={.5} />
@@ -60,7 +59,6 @@ export default function Configuration() {
           </div>
           <Button
             onClick={() => dispatch(next())}
-            color={theme === 'dark' ? 'dark' : 'light'}
             className="rounded-l-none px-1.5"
           >
             <Icon path={mdiChevronRight} size={.5} />

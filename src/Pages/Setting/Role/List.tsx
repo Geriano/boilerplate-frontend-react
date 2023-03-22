@@ -8,7 +8,6 @@ import Icon from "@mdi/react"
 
 export default function List() {
   const dispatch = useAppDispatch()
-  const theme = useAppSelector(state => state.layout.theme)
   const { id } = useParams()
   const roles = useAppSelector(state => state.role.paginated.data)
   const paginated = useAppSelector(state => state.role.paginated)
@@ -23,7 +22,6 @@ export default function List() {
               type: 'form',
               open: true,
             }))}
-            color={theme === 'dark' ? 'dark' : 'light'}
             title="Create"
           >
             <Icon path={mdiPlus} size={.5} />
@@ -67,7 +65,6 @@ export default function List() {
           <div className="flex border dark:border-gray-700 rounded-md">
             <Button
               onClick={() => dispatch(previous())}
-              color={theme === 'dark' ? 'dark' : 'light'}
               className="rounded-r-none px-1.5"
               title="Previous"
             >
@@ -78,7 +75,6 @@ export default function List() {
             </div>
             <Button
               onClick={() => dispatch(next())}
-              color={theme === 'dark' ? 'dark' : 'light'}
               className="rounded-l-none px-1.5"
               title="Next"
             >

@@ -9,7 +9,6 @@ import Tree from "./Tree"
 
 export default function Configuration() {
   const dispatch = useAppDispatch()
-  const theme = useAppSelector(state => state.layout.theme)
   const { lists, current } = useAppSelector(state => state.translation)
 
   const submit = (e: FormEvent) => {
@@ -38,7 +37,6 @@ export default function Configuration() {
 
         <div className="col-span-1 flex items-center justify-center px-4 py-2 border-b dark:border-gray-800">
           <Button
-            color={theme === 'dark' ? 'dark' : 'light'}
             title="Save"
             onClick={() => {
               dispatch(update())

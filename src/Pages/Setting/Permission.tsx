@@ -9,7 +9,6 @@ import Item from "./Permission/Item"
 
 export default function Permission() {
   const dispatch = useAppDispatch()
-  const theme = useAppSelector(state => state.layout.theme)
   const permission = usePermission()
   const permissions = useAppSelector(state => state.permission.permissions)
 
@@ -27,7 +26,6 @@ export default function Permission() {
             <Button
               type="button"
               title="Create"
-              color={theme === 'dark' ? 'dark' : 'light'}
               onClick={() => dispatch(toggle(true))}
             >
               <Icon path={mdiPlus} size={.5} />

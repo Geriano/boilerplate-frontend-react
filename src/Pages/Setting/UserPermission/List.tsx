@@ -9,7 +9,6 @@ import Icon from "@mdi/react"
 
 export default function List() {
   const dispatch = useAppDispatch()
-  const theme = useAppSelector(state => state.layout.theme)
   const paginator = useAppSelector(state => state.user.paginator)
   const paginated = useAppSelector(state => state.user.paginated)
   const users = paginated.data
@@ -61,7 +60,6 @@ export default function List() {
             <Button
               title="Previous"
               onClick={() => dispatch(previous())}
-              color={theme === 'dark' ? 'dark' : 'light'}
               className="rounded-r-none px-1.5"
             >
               <Icon path={mdiChevronLeft} size={.5} />
@@ -72,7 +70,7 @@ export default function List() {
             <Button
               title="Next"
               onClick={() => dispatch(next())}
-              color={theme === 'dark' ? 'dark' : 'light'} className="rounded-l-none px-1.5">
+               className="rounded-l-none px-1.5">
               <Icon path={mdiChevronRight} size={.5} />
             </Button>
           </div>

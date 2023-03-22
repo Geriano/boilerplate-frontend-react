@@ -12,7 +12,6 @@ import Table from "./User/Table"
 
 export default function User() {
   const dispatch = useAppDispatch()
-  const theme = useAppSelector(state => state.layout.theme)
   const paginator = useAppSelector(state => state.user.paginator)
   
   useEffect(() => {
@@ -26,7 +25,6 @@ export default function User() {
         <Button
           title="Create"
           onClick={() => dispatch(toggle(true))}
-          color={theme === 'dark' ? 'dark' : 'light'}
         >
           <Icon path={mdiPlus} size={.5} />
           <p className="capitalize">Create</p>
